@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolSharp.Shared", "src\TrendyolSharp.Shared\TrendyolSharp.Shared.csproj", "{2BDC255F-EEA1-4C08-966D-9404AF379539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolSharp.Marketplace", "src\TrendyolSharp.Marketplace\TrendyolSharp.Marketplace.csproj", "{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1", "1", "{2E5CE3E9-1DB2-48E9-9473-B46AFA7FC3A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2", "2", "{E19B0284-5F72-4689-82EC-472E49259EAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BDC255F-EEA1-4C08-966D-9404AF379539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDC255F-EEA1-4C08-966D-9404AF379539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDC255F-EEA1-4C08-966D-9404AF379539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDC255F-EEA1-4C08-966D-9404AF379539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2BDC255F-EEA1-4C08-966D-9404AF379539} = {2E5CE3E9-1DB2-48E9-9473-B46AFA7FC3A1}
+		{AE1302D0-B836-4555-A3F9-CCA6F29DFF00} = {E19B0284-5F72-4689-82EC-472E49259EAF}
+	EndGlobalSection
+EndGlobal
