@@ -57,7 +57,7 @@ public sealed class TrendyolRequest
     var isSuccessStatusCode = response.IsSuccessStatusCode;
     return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
-  
+
   public async Task<ResponseInformation> SendPutRequestAsync(object? data = null) {
     var request = new HttpRequestMessage(HttpMethod.Put, _url);
 
@@ -79,7 +79,7 @@ public sealed class TrendyolRequest
     var isSuccessStatusCode = response.IsSuccessStatusCode;
     return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
-  
+
   public async Task<ResponseInformation> SendDeleteRequestAsync() {
     var request = new HttpRequestMessage(HttpMethod.Delete, _url);
     if (_headers is not null) {
