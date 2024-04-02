@@ -445,7 +445,7 @@ public class TrendyolMarketplaceClient
   /// Gönderilen link daha önce başka bir ShipmentPackageId'ye zaten beslenmiş olabilir.
   /// </summary>
   public async Task<ResponseInformation> SendInvoiceLinkAsync(RequestSendInvoiceLink request) {
-    var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/supplier-invoice-links";
+    var url = $"/sapigw/suppliers/{_supplierId}/supplier-invoice-links";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync(request);
     return result;
