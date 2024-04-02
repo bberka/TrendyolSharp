@@ -463,28 +463,28 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
-  public async Task<ResponseInformation> SplitMultiPackageByQuantity(string shipmentPackageId, RequestSplitMultiPackageByQuantity request) {
+  public async Task<ResponseInformation> SplitMultiPackageByQuantityAsync(string shipmentPackageId, RequestSplitMultiPackageByQuantity request) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split-packages";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync(request);
     return result;
   }
 
-  public async Task<ResponseInformation> SplitShipmentPackage(string shipmentPackageId) {
+  public async Task<ResponseInformation> SplitShipmentPackageAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync();
     return result;
   }
 
-  public async Task<ResponseInformation> MultiSplitShipmentPackage(string shipmentPackageId) {
+  public async Task<ResponseInformation> MultiSplitShipmentPackageAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/multi-split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync();
     return result;
   }
 
-  public async Task<ResponseInformation> SplitShipmentPackageByQuantity(string shipmentPackageId) {
+  public async Task<ResponseInformation> SplitShipmentPackageByQuantityAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/quantity-split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync();
