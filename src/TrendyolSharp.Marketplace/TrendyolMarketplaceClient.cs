@@ -425,11 +425,29 @@ public class TrendyolMarketplaceClient
     var result = await trendyolRequest.SendPutRequestAsync(request);
     return result;
   }
-  
+
   public async Task<ResponseInformation> UpdatePackageUnsuppliedAsync(string shipmentPackageId, RequestUpdatePackageUnsupplied request) {
     var url = $"/integration/oms/core/sellers/{_supplierId}/shipment-packages/{shipmentPackageId}/items/unsupplied";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/fatura-linki-gonderme
+  /// <br/><br/>
+  /// Bu servis ile gönderilen fatura bağlantılarının hukuki zorunluluk gereği 8 yıl boyunca erişilebilir durumda olması gereklidir.
+  /// <br/><br/>
+  /// 409 hatasının iki sebebi bulunmaktadır.
+  /// <br/>
+  /// Gönderilen ShipmentPackageId'ye ait bir fatura zaten beslenmiş olabilir.
+  /// <br/>
+  /// Gönderilen link daha önce başka bir ShipmentPackageId'ye zaten beslenmiş olabilir.
+  /// </summary>
+  public async Task<ResponseInformation> SendInvoiceLinkAsync(RequestSendInvoiceLink request) {
+    var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/supplier-invoice-links";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPostRequestAsync(request);
     return result;
   }
 
