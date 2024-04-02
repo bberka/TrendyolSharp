@@ -1,5 +1,12 @@
 ﻿namespace TrendyolSharp.Shared.Common;
 
+/// <summary>
+/// https://developers.trendyol.com/docs/marketplace/urun-entegrasyonu/trendyol-kargo-sirketleri-listesi
+/// </summary>
+/// <param name="Id"></param>
+/// <param name="Code"></param>
+/// <param name="Name"></param>
+/// <param name="TaxNumber"></param>
 public record ShippingCompanies(int Id, string Code, string Name, string TaxNumber)
 {
   //LAST UPDATED: 2024-04-02
