@@ -56,6 +56,7 @@ public class TrendyolMarketplaceClient
 
 
   #region PRODUCT INTEGRATION
+
   //LINK: https://developers.trendyol.com/docs/category/%C3%BCr%C3%BCn-entegrasyonu
   //EXAMPLE REQUESTS: https://developers.trendyol.com/docs/marketplace/urun-entegrasyonu/ornek-istekler
 
@@ -327,6 +328,70 @@ public class TrendyolMarketplaceClient
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
     return result.Content.ToObject<ResponseGetProductsFiltered>();
+  }
+
+  #endregion
+
+  #region ORDER INTEGRATION
+
+  //LINK: https://developers.trendyol.com/docs/category/sipari%C5%9F-entegrasyonu
+  //CREATE TEST PRODUCT: https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/test-siparisi-olusturma
+  
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-cekme
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/askidaki-siparis-paketlerini-cekme
+  /// </summary>
+  /// <param name="filter"></param>
+  /// <returns></returns>
+  public async Task<ResponseGetShipmentPackages> GetShipmentPackages(FilterGetShipmentPackages? filter = null) {
+    var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/orders";
+    if (filter is not null) {
+      if (filter.StartDate.HasValue) {
+        url += $"&startDate={filter.StartDate}";
+      }
+
+      if (filter.EndDate.HasValue) {
+        url += $"&endDate={filter.EndDate}";
+      }
+
+      if (filter.Page.HasValue) {
+        url += $"&page={filter.Page}";
+      }
+
+      if (filter.Size.HasValue) {
+        url += $"&size={filter.Size}";
+      }
+
+      if (filter.SupplierId.HasValue) {
+        url += $"&supplierId={filter.SupplierId}";
+      }
+
+      if (!string.IsNullOrEmpty(filter.OrderNumber)) {
+        url += $"&orderNumber={filter.OrderNumber}";
+      }
+
+      if (!string.IsNullOrEmpty(filter.Status)) {
+        url += $"&status={filter.Status}";
+      }
+
+      if (!string.IsNullOrEmpty(filter.OrderByField)) {
+        url += $"&orderByField={filter.OrderByField}";
+      }
+
+      if (!string.IsNullOrEmpty(filter.OrderByDirection)) {
+        url += $"&orderByDirection={filter.OrderByDirection}";
+      }
+
+      if (filter.ShipmentPackageIds is not null) {
+        foreach (var shipmentPackageId in filter.ShipmentPackageIds) {
+          url += $"&shipmentPackageIds={shipmentPackageId}";
+        }
+      }
+    }
+
+    var request = new TrendyolRequest(_httpClient, url);
+    var result = await request.SendGetRequestAsync();
+    return result.Content.ToObject<ResponseGetShipmentPackages>();
   }
 
   #endregion
