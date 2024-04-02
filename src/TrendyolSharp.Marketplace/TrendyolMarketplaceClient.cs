@@ -7,6 +7,7 @@ using TrendyolSharp.Marketplace.Models.Response;
 using TrendyolSharp.Shared;
 using TrendyolSharp.Shared.Common;
 using TrendyolSharp.Shared.Extensions;
+using TrendyolSharp.Shared.Models;
 
 
 namespace TrendyolSharp.Marketplace;
@@ -45,8 +46,8 @@ public class TrendyolMarketplaceClient
     _token = token;
     _logger = logger;
     var baseApiUrl = isUseStageApi
-                       ? "https://stageapi.trendyol.com/sapigw"
-                       : "https://api.trendyol.com/sapigw";
+                       ? "https://stageapi.trendyol.com/"
+                       : "https://api.trendyol.com/";
 
     _httpClient = new HttpClient();
     _httpClient.BaseAddress = new Uri(baseApiUrl);
@@ -65,7 +66,7 @@ public class TrendyolMarketplaceClient
   /// </summary>
   /// <returns></returns>
   public async Task<ResponseGetSuppliersAddresses> GetSupplierAddressesAsync() {
-    var url = $"/suppliers/{_supplierId}/addresses";
+    var url = $"/sapigw/suppliers/{_supplierId}/addresses";
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
     return result.Content.ToObject<ResponseGetSuppliersAddresses>();
@@ -77,7 +78,7 @@ public class TrendyolMarketplaceClient
   /// <param name="pageRequest"></param>
   /// <returns></returns>
   public async Task<ResponseGetBrands> GetBrandsAsync(FilterPage? pageRequest = null) {
-    var url = "/brands";
+    var url = "/sapigw/brands";
     if (pageRequest is not null) {
       //for each prop if not null add to url
       url += $"&page={pageRequest.Page}";
@@ -95,7 +96,7 @@ public class TrendyolMarketplaceClient
   /// <param name="pageRequest"></param>
   /// <returns></returns>
   public async Task<ResponseGetBrandsByName> GetBrandsByNameAsync(string name) {
-    var url = $"/brands/by-name&name={name}";
+    var url = $"/sapigw/brands/by-name&name={name}";
     if (string.IsNullOrEmpty(name)) {
       throw new ArgumentNullException(nameof(name));
     }
@@ -111,7 +112,7 @@ public class TrendyolMarketplaceClient
   /// <param name="filter"></param>
   /// <returns></returns>
   public async Task<ResponseGetCategoryTree> GetCategoryTree(FilterGetCategoryTree? filter = null) {
-    var url = "/product-categories";
+    var url = "/sapigw/product-categories";
     if (filter is not null) {
       //for each prop if not null add to url
       if (filter.Id.HasValue) {
@@ -143,7 +144,7 @@ public class TrendyolMarketplaceClient
   /// <param name="filter"></param>
   /// <returns></returns>
   public async Task<ResponseGetCategoryAttributes> GetCategoryAttributesAsync(int categoryId, FilterGetCategoryAttributes? filter = null) {
-    var url = $"/product-categories/{categoryId}/attributes";
+    var url = $"/sapigw/product-categories/{categoryId}/attributes";
     if (filter is not null) {
       //for each prop if not null add to url
       if (!string.IsNullOrEmpty(filter.Name)) {
@@ -198,7 +199,7 @@ public class TrendyolMarketplaceClient
   /// <param name="request"></param>
   /// <returns></returns>
   public async Task<ResponseBatchRequestId> CreateProductsAsync(RequestCreateProducts request) {
-    var url = $"/suppliers/{_supplierId}/v2/products";
+    var url = $"/sapigw/suppliers/{_supplierId}/v2/products";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync(request);
     return result.Content.ToObject<ResponseBatchRequestId>();
@@ -211,7 +212,7 @@ public class TrendyolMarketplaceClient
   /// <param name="request"></param>
   /// <returns></returns>
   public async Task<ResponseBatchRequestId> UpdateProductsAsync(RequestUpdateProduct request) {
-    var url = $"/suppliers/{_supplierId}/v2/products";
+    var url = $"/sapigw/suppliers/{_supplierId}/v2/products";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPutRequestAsync(request);
     return result.Content.ToObject<ResponseBatchRequestId>();
@@ -223,7 +224,7 @@ public class TrendyolMarketplaceClient
   /// <param name="request"></param>
   /// <returns></returns>
   public async Task<ResponseBatchRequestId> UpdatePriceAndInventoryAsync(RequestUpdatePriceAndInventory request) {
-    var url = $"/suppliers/{_supplierId}/products/price-and-inventory";
+    var url = $"/sapigw/suppliers/{_supplierId}/products/price-and-inventory";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync(request);
     return result.Content.ToObject<ResponseBatchRequestId>();
@@ -235,7 +236,7 @@ public class TrendyolMarketplaceClient
   /// <param name="request"></param>
   /// <returns></returns>
   public async Task<ResponseBatchRequestId> DeleteProductAsync(RequestDeleteProducts request) {
-    var url = $"/suppliers/{_supplierId}/products";
+    var url = $"/sapigw/suppliers/{_supplierId}/products";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendDeleteRequestAsync();
     return result.Content.ToObject<ResponseBatchRequestId>();
@@ -247,7 +248,7 @@ public class TrendyolMarketplaceClient
   /// <param name="batchRequestId"></param>
   /// <returns></returns>
   public async Task<ResponseGetBatchRequestResult> GetBatchRequestResultAsync(string batchRequestId) {
-    var url = $"/suppliers/{_supplierId}/products/batch-requests/{batchRequestId}";
+    var url = $"/sapigw/suppliers/{_supplierId}/products/batch-requests/{batchRequestId}";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendGetRequestAsync();
     return result.Content.ToObject<ResponseGetBatchRequestResult>();
@@ -260,7 +261,7 @@ public class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<ResponseGetProductsFiltered> GetProducts(FilterProducts? filter = null) {
     //TODO: Check if can take all products without filtering
-    var url = $"/suppliers/{_supplierId}/products";
+    var url = $"/sapigw/suppliers/{_supplierId}/products";
     if (filter is not null) {
       if (filter.Approved.HasValue) {
         url += $"&approved={filter.Approved}";
@@ -336,7 +337,7 @@ public class TrendyolMarketplaceClient
 
   //LINK: https://developers.trendyol.com/docs/category/sipari%C5%9F-entegrasyonu
   //CREATE TEST PRODUCT: https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/test-siparisi-olusturma
-  
+
   /// <summary>
   /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-cekme
   /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/askidaki-siparis-paketlerini-cekme
@@ -344,7 +345,7 @@ public class TrendyolMarketplaceClient
   /// <param name="filter"></param>
   /// <returns></returns>
   public async Task<ResponseGetShipmentPackages> GetShipmentPackages(FilterGetShipmentPackages? filter = null) {
-    var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/orders";
+    var url = $"/sapigw/suppliers/{_supplierId}/orders";
     if (filter is not null) {
       if (filter.StartDate.HasValue) {
         url += $"&startDate={filter.StartDate}";
@@ -392,6 +393,44 @@ public class TrendyolMarketplaceClient
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
     return result.Content.ToObject<ResponseGetShipmentPackages>();
+  }
+
+
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/kargo-takip-kodu-bildirme
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <param name="trackingNumber"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> UpdateTrackingNumber(string shipmentPackageId, string trackingNumber) {
+    var url = $"/sapigw/suppliers/{_supplierId}/{shipmentPackageId}/update-tracking-number";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    //Request obj not needed to be modeled 
+    var request = new {
+      trackingNumber
+    };
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/paket-statu-bildirimi
+  /// </summary>
+  /// <param name="id"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> UpdatePackageStatusAsync(string id, RequestUpdatePackageStatus request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{id}";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
+  
+  public async Task<ResponseInformation> UpdatePackageUnsuppliedAsync(string shipmentPackageId, RequestUpdatePackageUnsupplied request) {
+    var url = $"/integration/oms/core/sellers/{_supplierId}/shipment-packages/{shipmentPackageId}/items/unsupplied";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
   }
 
   #endregion
