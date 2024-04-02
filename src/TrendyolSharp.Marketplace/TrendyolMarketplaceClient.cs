@@ -491,5 +491,12 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  public async Task<ResponseInformation> UpdateBoxInfoAsync(string shipmentPackageId, RequestUpdateBoxInfo request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/box-info";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
+
   #endregion
 }
