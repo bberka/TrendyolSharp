@@ -463,6 +463,12 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
   public async Task<ResponseInformation> SplitMultiPackageByQuantityAsync(string shipmentPackageId, RequestSplitMultiPackageByQuantity request) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split-packages";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
@@ -470,6 +476,11 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <returns></returns>
   public async Task<ResponseInformation> SplitShipmentPackageAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
@@ -477,6 +488,11 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <returns></returns>
   public async Task<ResponseInformation> MultiSplitShipmentPackageAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/multi-split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
@@ -484,6 +500,11 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <returns></returns>
   public async Task<ResponseInformation> SplitShipmentPackageByQuantityAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/quantity-split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
@@ -491,12 +512,45 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/desi-ve-koli-bilgisi-bildirimi
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
   public async Task<ResponseInformation> UpdateBoxInfoAsync(string shipmentPackageId, RequestUpdateBoxInfo request) {
     var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/box-info";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPutRequestAsync(request);
     return result;
   }
+
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/alternatif-teslimat-ile-gonderim
+  ///
+  /// You can also use this to send verify digital products delivery. Add digitalCode to params in request model.
+  /// </summary>
+  /// <param name="id"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> ProcessAlternativeDeliveryAsync(string id, RequestProcessAlternativeDelivery request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{id}/alternative-delivery";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://api.trendyol.com/sapigw/suppliers/{supplierId}/manual-deliver/{cargoTrackingNumber}
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> ManualDeliverAsync(string cargoTrackingNumber) {
+    var url = $"/sapigw/suppliers/{_supplierId}/manual-deliver/{cargoTrackingNumber}";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync();
+    return result;
+  }  
+  
 
   #endregion
 }
