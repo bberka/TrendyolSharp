@@ -590,7 +590,7 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
-  
+
   /// <summary>
   /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/depo-bilgisi-guncelleme
   /// </summary>
@@ -604,7 +604,7 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
-  
+
   /// <summary>
   /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/additional-supply-time-definition
   /// </summary>
@@ -616,8 +616,90 @@ public class TrendyolMarketplaceClient
     var result = await trendyolRequest.SendPutRequestAsync();
     return result;
   }
-  
-  
+
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetCountriesAsync() {
+    var url = "/integration/oms/core/countries";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <param name="countryCode"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetCitiesGULFAsync(string countryCode) {
+    var url = $"/integration/oms/core/countries/{countryCode}/cities";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetCitiesAzerbaijanAsync() {
+    var url = $"/integration/oms/core/countries/domestic/AZ/cities";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetDistrictsAzerbaijanAsync(string cityCode) {
+    var url = $"/integration/oms/core/countries/domestic/AZ/cities/{cityCode}/districts";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetCitiesTurkeyAsync() {
+    var url = $"/integration/oms/core/countries/domestic/TR/cities";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetDistrictsTurkeyAsync(string cityCode) {
+    var url = $"/integration/oms/core/countries/domestic/TR/cities/{cityCode}/districts";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/address-information
+  /// </summary>
+  /// <returns></returns>
+  public async Task<ResponseInformation> GetNeighborhoodsTurkeyAsync(string cityCode, string districtCode) {
+    var url = $"/integration/oms/core/countries/domestic/TR/cities/{cityCode}/districts/{districtCode}/neighborhoods";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendGetRequestAsync();
+    return result;
+  }
+
+
+  //TODO: IMPL https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/creating-test-order
+  //TODO: IMPL https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/test-order-statu-updates
 
   #endregion
 }
