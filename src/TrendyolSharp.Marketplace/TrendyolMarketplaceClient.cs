@@ -564,5 +564,31 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
+  
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/paket-kargo-firmasi-degistirme
+  /// <br/><br/>
+  /// Usable cargo providers:
+  /// “YKMP”
+  /// “ARASMP”
+  /// “SURATMP”
+  /// “HOROZMP”
+  /// “MNGMP”
+  /// “PTTMP”
+  /// “CEVAMP”
+  /// “TEXMP”
+  /// "SENDEOMP"
+  /// </summary>
+  /// <param name="shipmentPackageId"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> ChangeCargoProviderAsync(string shipmentPackageId, RequestChangeCargoProvider request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/cargo-providers";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
+  
+  
   #endregion
 }
