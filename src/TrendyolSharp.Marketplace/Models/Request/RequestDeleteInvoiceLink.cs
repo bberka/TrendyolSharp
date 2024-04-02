@@ -1,6 +1,6 @@
 ﻿namespace TrendyolSharp.Marketplace.Models.Request;
 
-public class RequestDeleteInvoiceLink
+public sealed class RequestDeleteInvoiceLink
 {
   /// <summary>
   /// shipmentPackageId

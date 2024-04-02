@@ -2,7 +2,7 @@
 
 namespace TrendyolSharp.Marketplace.Models.Request;
 
-public class RequestUpdatePackageUnsupplied
+public sealed class RequestUpdatePackageUnsupplied
 {
   public List<PackageStatusLine> Lines { get; set; }
   

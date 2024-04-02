@@ -2,7 +2,7 @@
 
 namespace TrendyolSharp.Marketplace.Models.Request;
 
-public class RequestMultiSplitShipmentPackage
+public sealed class RequestMultiSplitShipmentPackage
 {
   public List<SplitGroup> SplitGroups { get; set; }
 }

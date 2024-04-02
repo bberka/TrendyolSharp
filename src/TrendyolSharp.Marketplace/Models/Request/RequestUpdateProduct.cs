@@ -2,7 +2,7 @@
 
 namespace TrendyolSharp.Marketplace.Models.Request;
 
-public class RequestUpdateProduct
+public sealed class RequestUpdateProduct
 {
   [Required]
   public List<UpdateProduct> Items { get; set; }

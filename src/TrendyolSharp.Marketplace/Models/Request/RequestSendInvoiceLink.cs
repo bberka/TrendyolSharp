@@ -1,6 +1,6 @@
 ﻿namespace TrendyolSharp.Marketplace.Models.Request;
 
-public class RequestSendInvoiceLink
+public sealed class RequestSendInvoiceLink
 {
   public string InvoiceLink { get; set; }
   public long ShipmentPackageId { get; set; }

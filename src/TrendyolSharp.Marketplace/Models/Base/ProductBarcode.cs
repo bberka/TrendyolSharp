@@ -1,6 +1,6 @@
 ﻿namespace TrendyolSharp.Marketplace.Models.Base;
 
-public class ProductBarcode
+public sealed class ProductBarcode
 {
   [Required]
   [StringLength(40)]
