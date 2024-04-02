@@ -603,6 +603,19 @@ public class TrendyolMarketplaceClient
     var result = await trendyolRequest.SendPutRequestAsync(request);
     return result;
   }
+
+  
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/order-integration/additional-supply-time-definition
+  /// </summary>
+  /// <param name="packageId"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> AgreedDeliveryDateAsync(string packageId) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{packageId}/extended-agreed-delivery-date";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync();
+    return result;
+  }
   
   
 
