@@ -450,7 +450,7 @@ public class TrendyolMarketplaceClient
     var result = await trendyolRequest.SendPostRequestAsync(request);
     return result;
   }
-  
+
   /// <summary>
   /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/fatura-linki-silme
   /// </summary>
@@ -458,6 +458,34 @@ public class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<ResponseInformation> DeleteInvoiceLinkAsync(string shipmentPackageId) {
     var url = $"/sapigw/suppliers/{_supplierId}/supplier-invoice-links/delete";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPostRequestAsync();
+    return result;
+  }
+
+  public async Task<ResponseInformation> SplitMultiPackageByQuantity(string shipmentPackageId, RequestSplitMultiPackageByQuantity request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split-packages";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPostRequestAsync(request);
+    return result;
+  }
+
+  public async Task<ResponseInformation> SplitShipmentPackage(string shipmentPackageId) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/split";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPostRequestAsync();
+    return result;
+  }
+
+  public async Task<ResponseInformation> MultiSplitShipmentPackage(string shipmentPackageId) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/multi-split";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPostRequestAsync();
+    return result;
+  }
+
+  public async Task<ResponseInformation> SplitShipmentPackageByQuantity(string shipmentPackageId) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{shipmentPackageId}/quantity-split";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPostRequestAsync();
     return result;
