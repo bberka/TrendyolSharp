@@ -549,8 +549,20 @@ public class TrendyolMarketplaceClient
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendPutRequestAsync();
     return result;
-  }  
-  
+  }
+
+
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/yetkili-servis-gonderimi
+  /// </summary>
+  /// <param name="id"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> DeliveredByServiceAsync(string id) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{id}/delivered-by-service";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync();
+    return result;
+  }
 
   #endregion
 }
