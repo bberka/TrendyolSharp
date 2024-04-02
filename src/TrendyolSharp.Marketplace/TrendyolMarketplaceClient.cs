@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime;
+using System.Text;
 using Serilog;
 using TrendyolSharp.Marketplace.Models;
 using TrendyolSharp.Marketplace.Models.Filter;
@@ -564,7 +565,7 @@ public class TrendyolMarketplaceClient
     return result;
   }
 
-  
+
   /// <summary>
   /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/paket-kargo-firmasi-degistirme
   /// <br/><br/>
@@ -588,7 +589,22 @@ public class TrendyolMarketplaceClient
     var result = await trendyolRequest.SendPutRequestAsync(request);
     return result;
   }
+
+  
+  /// <summary>
+  /// https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/depo-bilgisi-guncelleme
+  /// </summary>
+  /// <param name="packageId"></param>
+  /// <param name="request"></param>
+  /// <returns></returns>
+  public async Task<ResponseInformation> UpdateWarehouseAsync(string packageId, RequestUpdateWarehouse request) {
+    var url = $"/sapigw/suppliers/{_supplierId}/shipment-packages/{packageId}/warehouse";
+    var trendyolRequest = new TrendyolRequest(_httpClient, url);
+    var result = await trendyolRequest.SendPutRequestAsync(request);
+    return result;
+  }
   
   
+
   #endregion
 }
