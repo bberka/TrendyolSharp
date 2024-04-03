@@ -9,7 +9,14 @@
 /// <param name="TaxNumber"></param>
 public record ShippingCompanies(int Id, string Code, string Name, string TaxNumber)
 {
-  //LAST UPDATED: 2024-04-02
+  /// <summary>
+  /// The cargo company information to be sent in the requests to the createProduct V2 service and the ID values of this information are on the table below.
+  /// Using these values, you need to integrate the necessary information into your systems.
+  /// <br></br>
+  /// <br></br>
+  /// The shipping companies you send when you send the product should not be different from the shipping company you have approved in your Trendyol agreement.
+  /// This will prevent your products from being published.
+  /// </summary>
   public static readonly ShippingCompanies[] List = new[] {
     new ShippingCompanies(42, "DHLMP", "DHL Marketplace", "951-241-77-13"),
     new ShippingCompanies(38, "SENDEOMP", "Sendeo Marketplace", "2910804196"),
