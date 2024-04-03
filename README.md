@@ -1,4 +1,4 @@
-# TrendyolSharp 
+# Introduction 
 TrendyolSharp is a simple Trendyol API Wrapper class library written in .NET 6
 
 # Warning
