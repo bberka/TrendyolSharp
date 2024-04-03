@@ -8,7 +8,7 @@ This project under development process, there could be potential bugs be careful
 - [ ] Trendyol Marketplace API 
   - [x] Product Integrations
   - [x] Order Integrations
-  - [ ] Common Label Integrations
+  - [x] Common Label Integrations
   - [ ] Refund Integrations
   - [ ] Question&Answer Integrations
 - [ ] Trendyol Meal API 
