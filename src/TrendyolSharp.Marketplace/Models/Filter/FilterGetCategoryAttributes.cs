@@ -1,6 +1,6 @@
 ﻿namespace TrendyolSharp.Marketplace.Models.Filter;
 
-public class FilterGetCategoryAttributes
+public sealed class FilterGetCategoryAttributes
 {
   public string? Name { get; set; }
   public string? DisplayName { get; set; }

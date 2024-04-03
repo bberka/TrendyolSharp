@@ -2,8 +2,7 @@
 
 namespace TrendyolSharp.Marketplace.Models.Request;
 
-public sealed class RequestUpdateProduct
+public sealed class RequestMultiSplitShipmentPackage
 {
-  [Required]
-  public List<UpdateProduct> Items { get; set; }
+  public List<SplitGroup> SplitGroups { get; set; }
 }

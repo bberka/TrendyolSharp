@@ -1,6 +1,6 @@
 ﻿namespace TrendyolSharp.Marketplace.Models.Base;
 
-public class CategoryAttributeName
+public sealed class CategoryAttributeName
 {
   public int Id { get; set; }
 

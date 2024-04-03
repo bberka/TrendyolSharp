@@ -18,7 +18,7 @@ public sealed class TrendyolRequest
     _headers = headers;
   }
 
-  public async Task<ResponseInformation> SendGetRequestAsync() {
+  public async Task<TrendyolApiResult> SendGetRequestAsync() {
     var request = new HttpRequestMessage(HttpMethod.Get, _url);
     if (_headers is not null) {
       foreach (var (key, value) in _headers) {
@@ -32,10 +32,10 @@ public sealed class TrendyolRequest
     var reasonPhrase = response.ReasonPhrase;
     var headers = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
     var isSuccessStatusCode = response.IsSuccessStatusCode;
-    return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, headers);
+    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, headers);
   }
 
-  public async Task<ResponseInformation> SendPostRequestAsync(object? data = null) {
+  public async Task<TrendyolApiResult> SendPostRequestAsync(object? data = null) {
     var request = new HttpRequestMessage(HttpMethod.Post, _url);
 
     if (data is not null) {
@@ -55,10 +55,10 @@ public sealed class TrendyolRequest
     var reasonPhrase = response.ReasonPhrase;
     var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
     var isSuccessStatusCode = response.IsSuccessStatusCode;
-    return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
+    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
 
-  public async Task<ResponseInformation> SendPutRequestAsync(object? data = null) {
+  public async Task<TrendyolApiResult> SendPutRequestAsync(object? data = null) {
     var request = new HttpRequestMessage(HttpMethod.Put, _url);
 
     if (data is not null) {
@@ -77,10 +77,10 @@ public sealed class TrendyolRequest
     var reasonPhrase = response.ReasonPhrase;
     var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
     var isSuccessStatusCode = response.IsSuccessStatusCode;
-    return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
+    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
 
-  public async Task<ResponseInformation> SendDeleteRequestAsync() {
+  public async Task<TrendyolApiResult> SendDeleteRequestAsync() {
     var request = new HttpRequestMessage(HttpMethod.Delete, _url);
     if (_headers is not null) {
       foreach (var (key, value) in _headers) {
@@ -94,6 +94,6 @@ public sealed class TrendyolRequest
     var reasonPhrase = response.ReasonPhrase;
     var headers = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
     var isSuccessStatusCode = response.IsSuccessStatusCode;
-    return new ResponseInformation(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, headers);
+    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, headers);
   }
 }

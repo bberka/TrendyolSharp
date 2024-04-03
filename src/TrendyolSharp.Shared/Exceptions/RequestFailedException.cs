@@ -7,8 +7,8 @@ namespace TrendyolSharp.Shared.Exceptions;
 
 public class RequestFailedException : TrendyolException
 {
-  public RequestFailedException(string requestKey, ResponseInformation responseInformation) :
-    base($"Request failed for {requestKey}. Response: {responseInformation.ToJsonString()}") { }
+  public RequestFailedException(string requestKey, TrendyolApiResult trendyolApiResult) :
+    base($"Request failed for {requestKey}. Response: {trendyolApiResult.ToJsonString()}") { }
 
   public RequestFailedException(string requestKey, Exception exception) : base($"Request failed for {requestKey}, check inner exception", exception) { }
 }
