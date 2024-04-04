@@ -117,5 +117,19 @@ public partial class TrendyolMarketplaceClient
     return result;
   }
 
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/returned-orders-integration/claim-issue-reasons
+  ///  <br/><br/>
+  /// You can access the claimIssueReasonId value to be sent to the createClaimIssue service by using this service.
+  /// </summary>
+  /// <returns></returns>
+  public async Task<TrendyolApiResult<ResponseGetClaimsIssueReasons>> GetClaimsIssueReasonsAsync() {
+    var url = "https://api.trendyol.com/sapigw/claim-issue-reasons";
+    var request = new TrendyolRequest(_httpClient, url);
+    var result = await request.SendGetRequestAsync();
+    var data = result.Content.ToObject<ResponseGetClaimsIssueReasons>();
+    return result.WithData(data);
+  }
+ 
   #endregion
 }
