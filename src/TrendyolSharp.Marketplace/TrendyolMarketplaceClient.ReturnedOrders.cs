@@ -83,10 +83,37 @@ public partial class TrendyolMarketplaceClient
   /// <param name="claimId"></param>
   /// <param name="requestModel"></param>
   /// <returns></returns>
-  public async Task<TrendyolApiResult> ApproveClaimLineItemsAsync(string claimId,RequestApproveClaimLineItems requestModel) {
+  public async Task<TrendyolApiResult> ApproveClaimLineItemsAsync(string claimId, RequestApproveClaimLineItems requestModel) {
     var url = $"https://api.trendyol.com/sapigw/claims/{claimId}/items/approve"; //TODO: CHECK IF THIS URL NEEDS _supplierId
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendPutRequestAsync(requestModel);
+    return result;
+  }
+
+
+  /// <summary>
+  ///  https://developers.trendyol.com/en/docs/trendyol-marketplace/returned-orders-integration/create-a-rejection-request-on-returned-orders
+  ///  <br/><br/>
+  /// In Trendyol system, you can create a rejection request for returned orders in your warehouse.
+  ///  <br/><br/>
+  /// You can only create a rejection request for returned orders with "WaitingInAction" status.
+  ///  <br/><br/>
+  /// You must add the attachments (pdf, jpeg, etc.) as a "form-data (file)".
+  ///  <br/><br/>
+  /// You can reach the"claimId" ve "claimLineItemIdList" values by using the Getting Returned Orders service.
+  ///  <br/><br/>
+  ///  You can reach the "claimIssueReasonId" by using the Claim Issue Reasons service.
+  ///  <br/><br/>
+  /// You must type the "description" as a freetext with maximum of 500 characters.
+  /// </summary>
+  /// <returns></returns>
+  public async Task<TrendyolApiResult> CreateClaimIssueAsync(RequestClaimIssue requestModel) {
+    var url
+      = $"https://api.trendyol.com/sapigw/claims/{requestModel.ClaimId}/issue?claimIssueReasonId={requestModel.ClaimIssueReasonId}&claimItemIdList={requestModel.ClaimItemIdList}&description={requestModel.Description}";
+    //need add form file
+    //files
+    var request = new TrendyolRequest(_httpClient, url);
+    var result = await request.SendPostRequestAsync(requestModel);
     return result;
   }
 
