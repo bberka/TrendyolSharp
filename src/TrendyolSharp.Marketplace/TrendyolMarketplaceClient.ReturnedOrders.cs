@@ -130,6 +130,27 @@ public partial class TrendyolMarketplaceClient
     var data = result.Content.ToObject<ResponseGetClaimsIssueReasons>();
     return result.WithData(data);
   }
- 
+
+  /// <summary>
+  /// https://developers.trendyol.com/en/docs/trendyol-marketplace/returned-orders-integration/get-claim-audit-information#get-claim-audit-information-1
+  ///  <br/><br/>
+  /// With this service, you can check the status progress of the returned order, the update date, the person who made the transaction.
+  ///  <br/><br/>
+  /// If the process is done with integration, it will appear as follows : executorApp: "SellerIntegrationApi",
+  ///  <br/><br/>
+  /// If a transaction is made from the seller panel, it will appear as follows: executorApp: "Seller Center Orders BFF"
+  ///  <br/><br/>
+  /// Anything other than these logs means that no action has been taken by you. The user information that you have transmitted while processing in the executorUser is returned.
+  /// </summary>
+  /// <param name="claimItemsId"></param>
+  /// <returns></returns>
+  public async Task<TrendyolApiResult<ResponseGetClaimAuditInformation>> GetClaimAuditInformationAsync(string claimItemsId) {
+    var url = $"https://api.trendyol.com/integration/oms/core/sellers/{_supplierId}/claims/items/{claimItemsId}/audit";
+    var request = new TrendyolRequest(_httpClient, url);
+    var result = await request.SendGetRequestAsync();
+    var data = result.Content.ToObject<ResponseGetClaimAuditInformation>();
+    return result.WithData(data);
+  }
+
   #endregion
 }
