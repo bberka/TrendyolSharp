@@ -18,10 +18,16 @@ public sealed class TrendyolRequest
     _headers = headers;
   }
 
-  public async Task<TrendyolApiResult> SendGetRequestAsync() {
+  public async Task<TrendyolApiResult> SendGetRequestAsync( Dictionary<string, string>? headers = null) {
     var request = new HttpRequestMessage(HttpMethod.Get, _url);
     if (_headers is not null) {
       foreach (var (key, value) in _headers) {
+        request.Headers.Add(key, value);
+      }
+    }
+     
+    if (headers is not null) {
+      foreach (var (key, value) in headers) {
         request.Headers.Add(key, value);
       }
     }
@@ -30,12 +36,14 @@ public sealed class TrendyolRequest
     var content = await response.Content.ReadAsStringAsync();
     var statusCode = response.StatusCode;
     var reasonPhrase = response.ReasonPhrase;
-    var headers = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
+    var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
     var isSuccessStatusCode = response.IsSuccessStatusCode;
-    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, headers);
+    return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
 
-  public async Task<TrendyolApiResult> SendPostRequestAsync(object? data = null) {
+  public async Task<TrendyolApiResult> SendPostRequestAsync(object? data = null,
+                                                            Dictionary<string, string>? headers = null,
+                                                            Dictionary<string, string>? formContent = null) {
     var request = new HttpRequestMessage(HttpMethod.Post, _url);
 
     if (data is not null) {
@@ -49,6 +57,15 @@ public sealed class TrendyolRequest
     }
 
 
+    if (headers is not null) {
+      foreach (var (key, value) in headers) {
+        request.Headers.Add(key, value);
+      }
+    }
+     
+    if (formContent is not null) {
+      request.Content = new FormUrlEncodedContent(formContent);
+    }
     var response = await _httpClient.SendAsync(request);
     var content = await response.Content.ReadAsStringAsync();
     var statusCode = response.StatusCode;
@@ -58,7 +75,9 @@ public sealed class TrendyolRequest
     return new TrendyolApiResult(isSuccessStatusCode, (int)statusCode, reasonPhrase, content, responseHeaders);
   }
 
-  public async Task<TrendyolApiResult> SendPutRequestAsync(object? data = null) {
+  public async Task<TrendyolApiResult> SendPutRequestAsync(object? data = null,
+                                                            Dictionary<string, string>? headers = null,
+                                                           Dictionary<string, string>? formContent = null) {
     var request = new HttpRequestMessage(HttpMethod.Put, _url);
 
     if (data is not null) {
@@ -69,6 +88,16 @@ public sealed class TrendyolRequest
       foreach (var (key, value) in _headers) {
         request.Headers.Add(key, value);
       }
+    }
+    
+    if (headers is not null) {
+      foreach (var (key, value) in headers) {
+        request.Headers.Add(key, value);
+      }
+    }
+    
+    if (formContent is not null) {
+      request.Content = new FormUrlEncodedContent(formContent);
     }
 
     var response = await _httpClient.SendAsync(request);
