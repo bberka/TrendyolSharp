@@ -4,9 +4,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolSharp.Shared", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendyolSharp.Marketplace", "src\TrendyolSharp.Marketplace\TrendyolSharp.Marketplace.csproj", "{AE1302D0-B836-4555-A3F9-CCA6F29DFF00}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1", "1", "{2E5CE3E9-1DB2-48E9-9473-B46AFA7FC3A1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Shared", "1. Shared", "{2E5CE3E9-1DB2-48E9-9473-B46AFA7FC3A1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2", "2", "{E19B0284-5F72-4689-82EC-472E49259EAF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Lib", "2. Lib", "{E19B0284-5F72-4689-82EC-472E49259EAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
