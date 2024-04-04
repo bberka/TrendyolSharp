@@ -13,12 +13,12 @@ It can be used to develop integrations for Trendyol sellers
 4. Data validations are very minimal and Trendyol API will throw errors if you give invalid data
 
 # Implementations
-- [ ] Trendyol Marketplace API 
+- [X] Trendyol Marketplace API 
   - [x] Product Integrations
   - [x] Order Integrations
   - [x] Common Label Integrations
   - [X] Refund Integrations
-  - [ ] Question&Answer Integrations
+  - [X] Question&Answer Integrations
 - [ ] Trendyol Meal API 
 - [ ] Trendyol Fast Market API
 
