@@ -91,7 +91,7 @@ public partial class TrendyolMarketplaceClient
   /// </summary>
   /// <param name="filter"></param>
   /// <returns></returns>
-  public async Task<TrendyolApiResult<ResponseGetCategoryTree>> GetCategoryTree(FilterGetCategoryTree? filter = null) {
+  public async Task<TrendyolApiResult<ResponseGetCategoryTree>> GetCategoryTreeAsync(FilterGetCategoryTree? filter = null) {
     var url = "https://api.trendyol.com/sapigw/product-categories";
     if (filter is not null) {
       //for each prop if not null add to url
@@ -315,7 +315,7 @@ public partial class TrendyolMarketplaceClient
   /// </summary>
   /// <param name="filter"></param>
   /// <returns></returns>
-  public async Task<TrendyolApiResult<ResponseGetProductsFiltered>> GetProducts(FilterProducts? filter = null) {
+  public async Task<TrendyolApiResult<ResponseGetProductsFiltered>> GetProductsAsync(FilterProducts? filter = null) {
     //TODO: Check if can take all products without filtering
     var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/products";
     if (filter is not null) {

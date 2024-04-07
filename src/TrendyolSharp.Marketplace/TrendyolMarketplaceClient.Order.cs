@@ -32,7 +32,7 @@ public partial class TrendyolMarketplaceClient
   /// </summary>
   /// <param name="filter"></param>
   /// <returns></returns>
-  public async Task<TrendyolApiResult<ResponseGetShipmentPackages>> GetShipmentPackages(FilterGetShipmentPackages? filter = null) {
+  public async Task<TrendyolApiResult<ResponseGetShipmentPackages>> GetShipmentPackagesAsync(FilterGetShipmentPackages? filter = null) {
     var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/orders";
     if (filter is not null) {
       if (filter.StartDate.HasValue) {
@@ -103,7 +103,7 @@ public partial class TrendyolMarketplaceClient
   /// <param name="shipmentPackageId"></param>
   /// <param name="trackingNumber"></param>
   /// <returns></returns>
-  public async Task<TrendyolApiResult> UpdateTrackingNumber(string shipmentPackageId, string trackingNumber) {
+  public async Task<TrendyolApiResult> UpdateTrackingNumberAsync(string shipmentPackageId, string trackingNumber) {
     var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/{shipmentPackageId}/update-tracking-number";
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     //Request obj not needed to be modeled 

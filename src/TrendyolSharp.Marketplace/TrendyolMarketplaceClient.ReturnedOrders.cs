@@ -16,7 +16,7 @@ public partial class TrendyolMarketplaceClient
   /// This method enables you to retrieve information about returned orders from the Trendyol system.
   /// </summary>
   /// <returns></returns>
-  public async Task<TrendyolApiResult<ResponseGetClaims>> GetClaims(RequestGetClaims? requestModel = null) {
+  public async Task<TrendyolApiResult<ResponseGetClaims>> GetClaimsAsync(RequestGetClaims? requestModel = null) {
     var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/claims";
     if (requestModel is not null) {
       if (!string.IsNullOrEmpty(requestModel.ClaimIds)) {
