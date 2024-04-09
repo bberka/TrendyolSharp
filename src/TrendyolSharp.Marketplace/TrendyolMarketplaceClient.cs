@@ -15,7 +15,7 @@ namespace TrendyolSharp.Marketplace;
 
 public partial class TrendyolMarketplaceClient
 {
-  private readonly string _supplierId;
+  private readonly long _supplierId;
   private readonly string _apiKey;
   private readonly string _apiSecret;
   private readonly string _token;
@@ -40,7 +40,7 @@ public partial class TrendyolMarketplaceClient
   /// <param name="integrationCompanyNameForHeader">Set a company name for User-Agent header</param>
   /// <param name="isUseStageApi">Whether to use the stage api or not</param>
   /// <param name="logger">Set logger for trendyol marketplace api client, uses serilog</param>
-  public TrendyolMarketplaceClient(string supplierId,
+  public TrendyolMarketplaceClient(long supplierId,
                                    string apiKey,
                                    string apiSecret,
                                    string token,
@@ -54,7 +54,59 @@ public partial class TrendyolMarketplaceClient
     _isUseStageApi = isUseStageApi;
     _logger = logger;
     _httpClient = new HttpClient();
+    if (_supplierId < 1) {
+      throw new ArgumentNullException(nameof(supplierId));
+    }
+
+    if (!string.IsNullOrEmpty(_apiKey)) {
+      throw new ArgumentNullException(nameof(apiKey));
+    }
+
+    if (!string.IsNullOrEmpty(_apiSecret)) {
+      throw new ArgumentNullException(nameof(apiSecret));
+    }
+
+    if (!string.IsNullOrEmpty(_token)) {
+      throw new ArgumentNullException(nameof(token));
+    }
+
+    if (!string.IsNullOrEmpty(integrationCompanyNameForHeader)) {
+      throw new ArgumentNullException(nameof(integrationCompanyNameForHeader));
+    }
+
     _httpClient.DefaultRequestHeaders.Add("User-Agent", $"{supplierId} - {integrationCompanyNameForHeader}");
     _httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{apiKey}:{apiSecret}"))}");
+  }
+
+  
+  /// <summary>
+  /// Gracefully verifies the trendyol marketplace client credentials
+  /// <br/>
+  /// <br/>
+  /// It will send a GetProductsAsync request only asking for 1 item to verify the credentials
+  /// </summary>
+  /// <returns></returns>
+  public bool VerifyCredentials() {
+    try {
+      var isCredentialsValid = !string.IsNullOrEmpty(_apiKey) && !string.IsNullOrEmpty(_apiSecret) && !string.IsNullOrEmpty(_token);
+      if (!isCredentialsValid) {
+        _logger?.Error("Trendyol marketplace client credentials are not valid for supplier id: {SupplierId}", _supplierId);
+        return false;
+      }
+
+      var verifyResult = GetProductsAsync(new FilterProducts() {
+                           SupplierId = _supplierId,
+                           Page = 1,
+                           Size = 1,
+                         })
+                         .GetAwaiter()
+                         .GetResult();
+      _logger?.Information("Trendyol marketplace client credentials are valid for supplier id: {SupplierId}", _supplierId);
+      return verifyResult.IsSuccessStatusCode;
+    }
+    catch (Exception ex) {
+      _logger?.Error(ex, "Trendyol marketplace client credentials are not valid for supplier id: {SupplierId}", _supplierId);
+      return false;
+    }
   }
 }
