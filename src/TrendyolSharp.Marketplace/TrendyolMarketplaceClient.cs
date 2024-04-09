@@ -47,6 +47,11 @@ public partial class TrendyolMarketplaceClient
                                    string integrationCompanyNameForHeader = "SelfIntegration",
                                    bool isUseStageApi = false,
                                    ILogger? logger = null) {
+    ArgumentNullException.ThrowIfNull(apiKey);
+    ArgumentNullException.ThrowIfNull(apiSecret);
+    ArgumentNullException.ThrowIfNull(token);
+    ArgumentNullException.ThrowIfNull(integrationCompanyNameForHeader);
+    ArgumentNullException.ThrowIfNull(isUseStageApi);
     _supplierId = supplierId;
     _apiKey = apiKey;
     _apiSecret = apiSecret;
@@ -56,22 +61,6 @@ public partial class TrendyolMarketplaceClient
     _httpClient = new HttpClient();
     if (_supplierId < 1) {
       throw new ArgumentNullException(nameof(supplierId));
-    }
-
-    if (!string.IsNullOrEmpty(_apiKey)) {
-      throw new ArgumentNullException(nameof(apiKey));
-    }
-
-    if (!string.IsNullOrEmpty(_apiSecret)) {
-      throw new ArgumentNullException(nameof(apiSecret));
-    }
-
-    if (!string.IsNullOrEmpty(_token)) {
-      throw new ArgumentNullException(nameof(token));
-    }
-
-    if (!string.IsNullOrEmpty(integrationCompanyNameForHeader)) {
-      throw new ArgumentNullException(nameof(integrationCompanyNameForHeader));
     }
 
     _httpClient.DefaultRequestHeaders.Add("User-Agent", $"{supplierId} - {integrationCompanyNameForHeader}");
@@ -94,11 +83,7 @@ public partial class TrendyolMarketplaceClient
         return false;
       }
 
-      var verifyResult = GetProductsAsync(new FilterProducts() {
-                           SupplierId = _supplierId,
-                           Page = 1,
-                           Size = 1,
-                         })
+      var verifyResult = GetSupplierAddressesAsync()
                          .GetAwaiter()
                          .GetResult();
       _logger?.Information("Trendyol marketplace client credentials are valid for supplier id: {SupplierId}", _supplierId);
