@@ -9,6 +9,7 @@ using TrendyolSharp.Shared;
 using TrendyolSharp.Shared.Common;
 using TrendyolSharp.Shared.Extensions;
 using TrendyolSharp.Shared.Models;
+using TrendyolSharp.Shared.Utils;
 
 
 namespace TrendyolSharp.Marketplace;
@@ -50,11 +51,10 @@ public partial class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<TrendyolApiResult<ResponseGetBrands>> GetBrandsAsync(FilterPage? pageRequest = null) {
     var url = "https://api.trendyol.com/sapigw/brands";
-    if (pageRequest is not null) {
-      //for each prop if not null add to url
-      url += $"&page={pageRequest.Page}";
-      url += $"&size={pageRequest.Size}";
-    }
+    url = url.BuildUrl(
+                       new ( "page", pageRequest?.Page ),
+                       new ( "size", pageRequest?.Size )
+                      );
 
     var trendyolRequest = new TrendyolRequest(_httpClient, url);
     var result = await trendyolRequest.SendGetRequestAsync();
@@ -93,24 +93,13 @@ public partial class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<TrendyolApiResult<ResponseGetCategoryTree>> GetCategoryTreeAsync(FilterGetCategoryTree? filter = null) {
     var url = "https://api.trendyol.com/sapigw/product-categories";
-    if (filter is not null) {
-      //for each prop if not null add to url
-      if (filter.Id.HasValue) {
-        url += $"&id={filter.Id}";
-      }
-
-      if (filter.ParentId.HasValue) {
-        url += $"&parentId={filter.ParentId}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.Name)) {
-        url += $"&name={filter.Name}";
-      }
-
-      if (filter.SubCategories.HasValue) {
-        url += $"&subCategories={filter.SubCategories}";
-      }
-    }
+    
+    url = url.BuildUrl(
+                       new ( "id", filter?.Id ),
+                       new ( "parentId", filter?.ParentId ),
+                       new ( "name", filter?.Name ),
+                       new ( "subCategories", filter?.SubCategories )
+                      );
 
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
@@ -132,49 +121,19 @@ public partial class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<TrendyolApiResult<ResponseGetCategoryAttributes>> GetCategoryAttributesAsync(int categoryId, FilterGetCategoryAttributes? filter = null) {
     var url = $"https://api.trendyol.com/sapigw/product-categories/{categoryId}/attributes";
-    if (filter is not null) {
-      //for each prop if not null add to url
-      if (!string.IsNullOrEmpty(filter.Name)) {
-        url += $"&name={filter.Name}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.DisplayName)) {
-        url += $"&displayName={filter.DisplayName}";
-      }
-
-      if (filter.AttributeId.HasValue) {
-        url += $"&attributeId={filter.AttributeId}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.AttributeName)) {
-        url += $"&attributeName={filter.AttributeName}";
-      }
-
-      if (filter.AllowCustom.HasValue) {
-        url += $"&allowCustom={filter.AllowCustom}";
-      }
-
-      if (filter.Required.HasValue) {
-        url += $"&required={filter.Required}";
-      }
-
-      if (filter.Slicer.HasValue) {
-        url += $"&slicer={filter.Slicer}";
-      }
-
-      if (filter.Varianter.HasValue) {
-        url += $"&varianter={filter.Varianter}";
-      }
-
-      if (filter.AttributeValueId.HasValue) {
-        url += $"&attributeValueId={filter.AttributeValueId}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.AttributeValueName)) {
-        url += $"&attributeValueName={filter.AttributeValueName}";
-      }
-    }
-
+    
+    url = url.BuildUrl(
+                       new ( "name", filter?.Name ),
+                       new ( "displayName", filter?.DisplayName ),
+                       new ( "attributeId", filter?.AttributeId ),
+                       new ( "attributeName", filter?.AttributeName ),
+                       new ( "allowCustom", filter?.AllowCustom ),
+                       new ( "required", filter?.Required ),
+                       new ( "slicer", filter?.Slicer ),
+                       new ( "varianter", filter?.Varianter ),
+                       new ( "attributeValueId", filter?.AttributeValueId ),
+                       new ( "attributeValueName", filter?.AttributeValueName )
+                      );
     var request = new TrendyolRequest(_httpClient, url.Replace("{categoriId}", categoryId.ToString()));
     var result = await request.SendGetRequestAsync();
     var data = result.Content.ToObject<ResponseGetCategoryAttributes>();
@@ -316,72 +275,25 @@ public partial class TrendyolMarketplaceClient
   /// <param name="filter"></param>
   /// <returns></returns>
   public async Task<TrendyolApiResult<ResponseGetProductsFiltered>> GetProductsAsync(FilterProducts? filter = null) {
-    //TODO: Check if can take all products without filtering
-    var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/products";
-    if (filter is not null) {
-      if (filter.Approved.HasValue) {
-        url += $"&approved={filter.Approved}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.Barcode)) {
-        url += $"&barcode={filter.Barcode}";
-      }
-
-      if (filter.StartDate.HasValue) {
-        url += $"&startDate={filter.StartDate}";
-      }
-
-      if (filter.EndDate.HasValue) {
-        url += $"&endDate={filter.EndDate}";
-      }
-
-      if (filter.Page.HasValue) {
-        url += $"&page={filter.Page}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.DateQueryType)) {
-        url += $"&dateQueryType={filter.DateQueryType}";
-      }
-
-      if (filter.Size.HasValue) {
-        url += $"&size={filter.Size}";
-      }
-
-      if (filter.SupplierId.HasValue) {
-        url += $"&supplierId={filter.SupplierId}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.StockCode)) {
-        url += $"&stockCode={filter.StockCode}";
-      }
-
-      if (filter.Archived.HasValue) {
-        url += $"&archived={filter.Archived}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.ProductMainId)) {
-        url += $"&productMainId={filter.ProductMainId}";
-      }
-
-      if (filter.OnSale.HasValue) {
-        url += $"&onSale={filter.OnSale}";
-      }
-
-      if (filter.Rejected.HasValue) {
-        url += $"&rejected={filter.Rejected}";
-      }
-
-      if (filter.Blacklisted.HasValue) {
-        url += $"&blacklisted={filter.Blacklisted}";
-      }
-
-      if (filter.BrandIds is not null) {
-        foreach (var brandId in filter.BrandIds) {
-          url += $"&brandIds={brandId}";
-        }
-      }
-    }
-
+    var url =  $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/products";
+    url = url.BuildUrl(
+                       new ( "approved", filter?.Approved ),
+                       new ( "barcode", filter?.Barcode ),
+                       new ( "startDate", filter?.StartDate ),
+                       new ( "endDate", filter?.EndDate ),
+                       new ( "page", filter?.Page ),
+                       new ( "dateQueryType", filter?.DateQueryType ),
+                       new ( "size", filter?.Size ),
+                       new ( "supplierId", filter?.SupplierId ),
+                       new ( "stockCode", filter?.StockCode ),
+                       new ( "archived", filter?.Archived ),
+                       new ( "productMainId", filter?.ProductMainId ), 
+                       new ( "onSale", filter?.OnSale ),
+                       new ( "rejected", filter?.Rejected ),
+                       new ( "blacklisted", filter?.Blacklisted ),
+                       new ( "brandIds", filter?.BrandIds )
+                      );
+    
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
     var data = result.Content.ToObject<ResponseGetProductsFiltered>();

@@ -9,6 +9,7 @@ using TrendyolSharp.Shared;
 using TrendyolSharp.Shared.Common;
 using TrendyolSharp.Shared.Extensions;
 using TrendyolSharp.Shared.Models;
+using TrendyolSharp.Shared.Utils;
 
 
 namespace TrendyolSharp.Marketplace;
@@ -34,50 +35,20 @@ public partial class TrendyolMarketplaceClient
   /// <returns></returns>
   public async Task<TrendyolApiResult<ResponseGetShipmentPackages>> GetShipmentPackagesAsync(FilterGetShipmentPackages? filter = null) {
     var url = $"https://api.trendyol.com/sapigw/suppliers/{_supplierId}/orders";
-    if (filter is not null) {
-      if (filter.StartDate.HasValue) {
-        url += $"&startDate={filter.StartDate}";
-      }
 
-      if (filter.EndDate.HasValue) {
-        url += $"&endDate={filter.EndDate}";
-      }
-
-      if (filter.Page.HasValue) {
-        url += $"&page={filter.Page}";
-      }
-
-      if (filter.Size.HasValue) {
-        url += $"&size={filter.Size}";
-      }
-
-      if (filter.SupplierId.HasValue) {
-        url += $"&supplierId={filter.SupplierId}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.OrderNumber)) {
-        url += $"&orderNumber={filter.OrderNumber}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.Status)) {
-        url += $"&status={filter.Status}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.OrderByField)) {
-        url += $"&orderByField={filter.OrderByField}";
-      }
-
-      if (!string.IsNullOrEmpty(filter.OrderByDirection)) {
-        url += $"&orderByDirection={filter.OrderByDirection}";
-      }
-
-      if (filter.ShipmentPackageIds is not null) {
-        foreach (var shipmentPackageId in filter.ShipmentPackageIds) {
-          url += $"&shipmentPackageIds={shipmentPackageId}";
-        }
-      }
-    }
-
+    url = url.BuildUrl(
+                       new("startDate", filter?.StartDate),
+                       new("endDate", filter?.EndDate),
+                       new("page", filter?.Page),
+                       new("size", filter?.Size),
+                       new("supplierId", filter?.SupplierId),
+                       new("orderNumber", filter?.OrderNumber),
+                       new("status", filter?.Status),
+                       new("orderByField", filter?.OrderByField),
+                       new("orderByDirection", filter?.OrderByDirection),
+                       new("shipmentPackageIds", filter?.ShipmentPackageIds)
+                      );
+  
     var request = new TrendyolRequest(_httpClient, url);
     var result = await request.SendGetRequestAsync();
     var data = result.Content.ToObject<ResponseGetShipmentPackages>();
