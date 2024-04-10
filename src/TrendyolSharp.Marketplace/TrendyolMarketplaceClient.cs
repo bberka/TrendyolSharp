@@ -75,7 +75,8 @@ public partial class TrendyolMarketplaceClient
   /// It will send a GetProductsAsync request only asking for 1 item to verify the credentials
   /// </summary>
   /// <returns></returns>
-  public bool VerifyCredentials() {
+  public bool VerifyCredentials(out TrendyolApiResult? result) {
+    result = null;
     try {
       var isCredentialsValid = !string.IsNullOrEmpty(_apiKey) && !string.IsNullOrEmpty(_apiSecret) && !string.IsNullOrEmpty(_token);
       if (!isCredentialsValid) {
@@ -83,11 +84,13 @@ public partial class TrendyolMarketplaceClient
         return false;
       }
 
-      var verifyResult = GetSupplierAddressesAsync()
-                         .GetAwaiter()
-                         .GetResult();
+      var trendyolApiResult = GetSupplierAddressesAsync()
+               .GetAwaiter()
+               .GetResult();
+      
+      result = trendyolApiResult.ToApiResult();
       _logger?.Information("Trendyol marketplace client credentials are valid for supplier id: {SupplierId}", _supplierId);
-      return verifyResult.IsSuccessStatusCode;
+      return result.IsSuccessStatusCode;
     }
     catch (Exception ex) {
       _logger?.Error(ex, "Trendyol marketplace client credentials are not valid for supplier id: {SupplierId}", _supplierId);
