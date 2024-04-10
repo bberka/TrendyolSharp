@@ -21,4 +21,9 @@ public record TrendyolApiResult<T>(
   string? ReasonPhrase,
   string Content,
   IReadOnlyDictionary<string, string> Headers,
-  T Data);
+  T Data)
+{
+  public TrendyolApiResult ToApiResult() {
+    return new TrendyolApiResult(IsSuccessStatusCode, StatusCode, ReasonPhrase, Content, Headers);
+  }
+}
