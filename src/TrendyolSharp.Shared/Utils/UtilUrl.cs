@@ -13,8 +13,10 @@ public static class UtilUrl
       if (value is null) {
         continue;
       }
-
-      if (value is IEnumerable enumerable) {
+      if (value is string) {
+        query[key] = value.ToString();
+      }
+      else if (value is IEnumerable enumerable) {
         foreach (var item in enumerable) {
           query.Add(key, item.ToString());
         }
