@@ -3,5 +3,5 @@
 public sealed class PackageStatusLine
 {
   public long LineId { get; set; }
-  public int Quantity { get; set; }
+  public long Quantity { get; set; }
 }

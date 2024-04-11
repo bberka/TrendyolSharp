@@ -2,7 +2,7 @@
 
 public sealed class DeliveryOption
 {
-  public int DeliveryDuration { get; set; }
+  public long DeliveryDuration { get; set; }
 
   public string FastDeliveryType { get; set; }
 }

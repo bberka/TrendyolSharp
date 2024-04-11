@@ -15,13 +15,13 @@ public sealed class CreateProduct
   public string ProductMainId { get; set; }
 
   [Required]
-  public int BrandId { get; set; }
+  public long BrandId { get; set; }
 
   [Required]
-  public int CategoryId { get; set; }
+  public long CategoryId { get; set; }
 
   [Required]
-  public int Quantity { get; set; }
+  public long Quantity { get; set; }
 
   [Required]
   [StringLength(100)]
@@ -44,14 +44,14 @@ public sealed class CreateProduct
   public decimal SalePrice { get; set; }
 
   [Required]
-  public int VatRate { get; set; }
+  public long VatRate { get; set; }
 
   [Required]
-  public int CargoCompanyId { get; set; }
+  public long CargoCompanyId { get; set; }
 
-  public int? ShipmentAddressId { get; set; }
+  public long? ShipmentAddressId { get; set; }
 
-  public int? ReturningAddressId { get; set; }
+  public long? ReturningAddressId { get; set; }
 
   public DeliveryOption DeliveryOption { get; set; }
 

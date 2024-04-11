@@ -2,5 +2,5 @@
 
 public sealed class RequestUpdateWarehouse
 {
-  public int WarehouseId { get; set; }
+  public long WarehouseId { get; set; }
 }

@@ -2,9 +2,9 @@
 
 public sealed class Attribute
 {
-  public int AttributeId { get; set; }
+  public long AttributeId { get; set; }
 
-  public int AttributeValueId { get; set; }
+  public long AttributeValueId { get; set; }
 
   public string? CustomAttributeValue { get; set; }
 }

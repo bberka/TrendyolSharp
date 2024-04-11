@@ -19,5 +19,5 @@ public sealed class RequestUpdatePackageUnsupplied
   /// <br/><br/>
   /// 506	Mücbir Sebep	Doğal afet, hastalık, cenaze vb. durumlarda seçilmelidir
   /// </summary>
-  public int ReasonId { get; set; }
+  public long ReasonId { get; set; }
 }

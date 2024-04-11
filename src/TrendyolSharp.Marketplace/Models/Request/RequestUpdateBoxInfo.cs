@@ -2,6 +2,6 @@
 
 public sealed class RequestUpdateBoxInfo
 {
-  public int BoxQuantity { get; set; }
+  public long BoxQuantity { get; set; }
   public decimal Deci { get; set; }
 }

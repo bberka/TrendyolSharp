@@ -26,13 +26,13 @@ public sealed class BatchRequestResultProduct
   public string CurrencyType { get; set; }
 
   [Required]
-  public int VatRate { get; set; }
+  public long VatRate { get; set; }
 
   [Required]
   public string CargoCompany { get; set; }
 
   [Required]
-  public int Quantity { get; set; }
+  public long Quantity { get; set; }
 
   [Required]
   public string StockCode { get; set; }

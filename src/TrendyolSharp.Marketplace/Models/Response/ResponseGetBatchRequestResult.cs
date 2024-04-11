@@ -23,5 +23,5 @@ public sealed class ResponseGetBatchRequestResult
   public string SourceType { get; set; }
 
   [Required]
-  public int ItemCount { get; set; }
+  public long ItemCount { get; set; }
 }

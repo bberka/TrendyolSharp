@@ -2,7 +2,7 @@
 
 public sealed class SupplierAddress
 {
-  public int Id { get; set; }
+  public long Id { get; set; }
 
   [Required]
   public string AddressType { get; set; }
@@ -13,12 +13,12 @@ public sealed class SupplierAddress
   [Required]
   public string City { get; set; }
 
-  public int CityCode { get; set; }
+  public long CityCode { get; set; }
 
   [Required]
   public string District { get; set; }
 
-  public int DistrictId { get; set; }
+  public long DistrictId { get; set; }
 
   [Required]
   public string PostCode { get; set; }

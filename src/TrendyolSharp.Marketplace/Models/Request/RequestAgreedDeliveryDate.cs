@@ -2,5 +2,5 @@
 
 public sealed class RequestAgreedDeliveryDate
 {
-  public int ExtendedDayCount { get; set; }
+  public long ExtendedDayCount { get; set; }
 }

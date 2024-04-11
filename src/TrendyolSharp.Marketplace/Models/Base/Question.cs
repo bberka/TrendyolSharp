@@ -5,8 +5,8 @@ public sealed class Question
   public Answer Answer { get; set; }
   public string AnsweredDateMessage { get; set; }
   public long CreationDate { get; set; }
-  public int CustomerId { get; set; }
-  public int Id { get; set; }
+  public long CustomerId { get; set; }
+  public long Id { get; set; }
   public string ImageUrl { get; set; }
   public string ProductName { get; set; }
   public bool Public { get; set; }

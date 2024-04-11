@@ -15,10 +15,10 @@ public sealed class UpdateProduct
   public string ProductMainId { get; set; }
 
   [Required]
-  public int BrandId { get; set; }
+  public long BrandId { get; set; }
 
   [Required]
-  public int CategoryId { get; set; }
+  public long CategoryId { get; set; }
 
   [Required]
   [StringLength(100)]
@@ -32,9 +32,9 @@ public sealed class UpdateProduct
   public string Description { get; set; }
 
   [Required]
-  public int VatRate { get; set; }
+  public long VatRate { get; set; }
 
-  public int? DeliveryDuration { get; set; }
+  public long? DeliveryDuration { get; set; }
 
   public DeliveryOption DeliveryOption { get; set; }
 
@@ -45,9 +45,9 @@ public sealed class UpdateProduct
   public List<Attribute> Attributes { get; set; }
 
   [Required]
-  public int CargoCompanyId { get; set; }
+  public long CargoCompanyId { get; set; }
 
-  public int? ShipmentAddressId { get; set; }
+  public long? ShipmentAddressId { get; set; }
 
-  public int? ReturningAddressId { get; set; }
+  public long? ReturningAddressId { get; set; }
 }

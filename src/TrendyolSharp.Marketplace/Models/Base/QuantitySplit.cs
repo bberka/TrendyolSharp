@@ -3,5 +3,5 @@
 public sealed class QuantitySplit
 {
   public long OrderLineId { get; set; }
-  public List<int> Quantities { get; set; }
+  public List<long> Quantities { get; set; }
 }

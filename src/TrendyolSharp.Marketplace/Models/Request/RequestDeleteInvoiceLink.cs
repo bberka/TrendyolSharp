@@ -10,7 +10,7 @@ public sealed class RequestDeleteInvoiceLink
   /// <summary>
   /// Her zaman 1 olarak gönderilmelidir.
   /// </summary>
-  public int ChannelId => 1;
+  public long ChannelId => 1;
 
   /// <summary>
   /// sipariş paketleri çekme servisinden kontrol edilmelidir.

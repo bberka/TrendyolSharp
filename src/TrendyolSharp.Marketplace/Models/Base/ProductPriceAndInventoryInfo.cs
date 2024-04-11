@@ -7,7 +7,7 @@ public sealed class ProductPriceAndInventoryInfo
   public string Barcode { get; set; }
 
   [Required]
-  public int Quantity { get; set; }
+  public long Quantity { get; set; }
 
   [Required]
   public decimal SalePrice { get; set; }

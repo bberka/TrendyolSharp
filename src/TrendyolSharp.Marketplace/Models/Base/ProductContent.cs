@@ -11,13 +11,13 @@ public sealed class ProductContent
   [Required]
   public bool Archived { get; set; }
 
-  public int ProductCode { get; set; }
+  public long ProductCode { get; set; }
 
   [Required]
   public string BatchRequestId { get; set; }
 
   [Required]
-  public int SupplierId { get; set; }
+  public long SupplierId { get; set; }
 
   [Required]
   public long CreateDateTime { get; set; }
@@ -48,7 +48,7 @@ public sealed class ProductContent
   public string StockUnitType { get; set; }
 
   [Required]
-  public int Quantity { get; set; }
+  public long Quantity { get; set; }
 
   [Required]
   public decimal ListPrice { get; set; }
@@ -57,7 +57,7 @@ public sealed class ProductContent
   public decimal SalePrice { get; set; }
 
   [Required]
-  public int VatRate { get; set; }
+  public long VatRate { get; set; }
 
   [Required]
   public decimal DimensionalWeight { get; set; }
@@ -86,16 +86,16 @@ public sealed class ProductContent
   public bool Locked { get; set; }
 
   [Required]
-  public int ProductContentId { get; set; }
+  public long ProductContentId { get; set; }
 
   [Required]
-  public int PimCategoryId { get; set; }
+  public long PimCategoryId { get; set; }
 
   [Required]
-  public int BrandId { get; set; }
+  public long BrandId { get; set; }
 
   [Required]
-  public int Version { get; set; }
+  public long Version { get; set; }
 
   [Required]
   public string Color { get; set; }

@@ -2,7 +2,7 @@
 
 public sealed class CategoryAttribute
 {
-  public int CategoryId { get; set; }
+  public long CategoryId { get; set; }
 
   public CategoryAttributeName AttributeName { get; set; }
 
