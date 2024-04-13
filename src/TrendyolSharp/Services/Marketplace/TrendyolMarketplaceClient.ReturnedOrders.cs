@@ -72,7 +72,7 @@ namespace TrendyolSharp.Services.Marketplace
     /// <param name="requestModel"></param>
     /// <returns></returns>
     public async Task<TrendyolApiResult> ApproveClaimLineItemsAsync(string claimId, RequestApproveClaimLineItems requestModel) {
-      var url = $"https://api.trendyol.com/sapigw/claims/{claimId}/items/approve"; //TODO: CHECK IF THIS URL NEEDS _supplierId
+      var url = $"https://api.trendyol.com/sapigw/claims/{claimId}/items/approve";
       var request = new TrendyolRequest(_httpClient, url);
       var result = await request.SendPutRequestAsync(requestModel);
       return result;
