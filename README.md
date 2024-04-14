@@ -1,5 +1,5 @@
 # Introduction 
-TrendyolSharp is a simple Trendyol API Wrapper class library written in .NET 6
+TrendyolSharp is a simple Trendyol API Wrapper class library written in .NET Standard 2.1
 
 This project aims to wrap each Trendyol API endpoints to .NET class and methods using the power of type safety
 
