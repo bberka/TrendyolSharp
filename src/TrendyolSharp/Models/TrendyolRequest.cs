@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TrendyolSharp.Abstract;
 using TrendyolSharp.Extensions;
 
 namespace TrendyolSharp.Models
@@ -20,8 +21,12 @@ namespace TrendyolSharp.Models
       _headers = headers;
     }
 
-    public async Task<TrendyolApiResult> SendGetRequestAsync(Dictionary<string, string> headers = null) {
-      var request = new HttpRequestMessage(HttpMethod.Get, _url);
+
+    private async Task<TrendyolApiResult> SendRequestAsync(HttpMethod method,
+                                                           Dictionary<string, string> headers = null,
+                                                           Dictionary<string, string> formContent = null,
+                                                           string jsonData = null) {
+      var request = new HttpRequestMessage(method, _url);
       if (_headers != null)
         foreach (var (key, value) in _headers)
           request.Headers.Add(key, value);
@@ -30,6 +35,11 @@ namespace TrendyolSharp.Models
         foreach (var (key, value) in headers)
           request.Headers.Add(key, value);
 
+      //These will only work for POST and PUT requests, in here we do not check it because it will throw anyway
+      if (jsonData != null) request.Content = new StringContent(jsonData, Encoding.Default, "application/json");
+      if (formContent != null) request.Content = new FormUrlEncodedContent(formContent);
+      
+      
       var response = await _httpClient.SendAsync(request);
       var content = await response.Content.ReadAsStringAsync();
       var statusCode = response.StatusCode;
@@ -41,94 +51,28 @@ namespace TrendyolSharp.Models
                                    reasonPhrase,
                                    content,
                                    responseHeaders,
-                                   _url);
+                                   _url,
+                                   jsonData);
+    }
+
+    public async Task<TrendyolApiResult> SendGetRequestAsync(Dictionary<string, string> headers = null) {
+      return await SendRequestAsync(HttpMethod.Get, headers: headers);
     }
 
     public async Task<TrendyolApiResult> SendPostRequestAsync(object data = null,
                                                               Dictionary<string, string> headers = null,
                                                               Dictionary<string, string> formContent = null) {
-      var request = new HttpRequestMessage(HttpMethod.Post, _url);
-
-      var json = data?.ToJsonString();
-      if (data != null && json != null) request.Content = new StringContent(json, Encoding.Default, "application/json");
-
-      if (_headers != null)
-        foreach (var (key, value) in _headers)
-          request.Headers.Add(key, value);
-
-
-      if (headers != null)
-        foreach (var (key, value) in headers)
-          request.Headers.Add(key, value);
-
-      if (formContent != null) request.Content = new FormUrlEncodedContent(formContent);
-
-      var response = await _httpClient.SendAsync(request);
-      var content = await response.Content.ReadAsStringAsync();
-      var statusCode = response.StatusCode;
-      var reasonPhrase = response.ReasonPhrase;
-      var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
-      var isSuccessStatusCode = response.IsSuccessStatusCode;
-      return new TrendyolApiResult(isSuccessStatusCode,
-                                   (int)statusCode,
-                                   reasonPhrase,
-                                   content,
-                                   responseHeaders,
-                                   _url,
-                                   json);
+      return await SendRequestAsync(HttpMethod.Post, headers: headers, jsonData: data.ToJsonString(), formContent: formContent);
     }
 
     public async Task<TrendyolApiResult> SendPutRequestAsync(object data = null,
                                                              Dictionary<string, string> headers = null,
                                                              Dictionary<string, string> formContent = null) {
-      var request = new HttpRequestMessage(HttpMethod.Put, _url);
-
-      var json = data?.ToJsonString();
-      if (data != null && json != null) request.Content = new StringContent(json, Encoding.Default, "application/json");
-
-      if (_headers != null)
-        foreach (var (key, value) in _headers)
-          request.Headers.Add(key, value);
-
-      if (headers != null)
-        foreach (var (key, value) in headers)
-          request.Headers.Add(key, value);
-
-      if (formContent != null) request.Content = new FormUrlEncodedContent(formContent);
-
-      var response = await _httpClient.SendAsync(request);
-      var content = await response.Content.ReadAsStringAsync();
-      var statusCode = response.StatusCode;
-      var reasonPhrase = response.ReasonPhrase;
-      var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
-      var isSuccessStatusCode = response.IsSuccessStatusCode;
-      return new TrendyolApiResult(isSuccessStatusCode,
-                                   (int)statusCode,
-                                   reasonPhrase,
-                                   content,
-                                   responseHeaders,
-                                   _url,
-                                   json);
+      return await SendRequestAsync(HttpMethod.Put, headers: headers, jsonData: data.ToJsonString(), formContent: formContent);
     }
 
-    public async Task<TrendyolApiResult> SendDeleteRequestAsync() {
-      var request = new HttpRequestMessage(HttpMethod.Delete, _url);
-      if (_headers != null)
-        foreach (var (key, value) in _headers)
-          request.Headers.Add(key, value);
-
-      var response = await _httpClient.SendAsync(request);
-      var content = await response.Content.ReadAsStringAsync();
-      var statusCode = response.StatusCode;
-      var reasonPhrase = response.ReasonPhrase;
-      var headers = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
-      var isSuccessStatusCode = response.IsSuccessStatusCode;
-      return new TrendyolApiResult(isSuccessStatusCode,
-                                   (int)statusCode,
-                                   reasonPhrase,
-                                   content,
-                                   headers,
-                                   _url);
+    public async Task<TrendyolApiResult> SendDeleteRequestAsync(Dictionary<string, string> headers = null) {
+      return await SendRequestAsync(HttpMethod.Delete, headers: headers);
     }
   }
 }
