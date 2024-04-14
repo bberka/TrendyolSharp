@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TrendyolSharp.Models;
-using TrendyolSharp.Models.Request;
+using TrendyolSharp.Models.Marketplace.Request;
 
 namespace TrendyolSharp.Services.Marketplace
 {

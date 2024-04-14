@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Finance\Request\"/>
     <Folder Include="Services\ExportCenter\"/>
     <Folder Include="Services\FastMarket\"/>
     <Folder Include="Services\Food\"/>

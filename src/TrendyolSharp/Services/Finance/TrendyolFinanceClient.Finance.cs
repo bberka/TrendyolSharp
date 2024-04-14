@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using TrendyolSharp.Extensions;
 using TrendyolSharp.Models;
-using TrendyolSharp.Models.Filter;
-using TrendyolSharp.Models.Response;
+using TrendyolSharp.Models.Finance.Filter;
+using TrendyolSharp.Models.Finance.Response;
+using TrendyolSharp.Models.Marketplace.Filter;
 using TrendyolSharp.Utils;
 
 namespace TrendyolSharp.Services.Finance

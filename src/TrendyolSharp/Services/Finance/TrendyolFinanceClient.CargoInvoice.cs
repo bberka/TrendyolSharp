@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TrendyolSharp.Extensions;
 using TrendyolSharp.Models;
-using TrendyolSharp.Models.Response;
+using TrendyolSharp.Models.Finance.Response;
 
 namespace TrendyolSharp.Services.Finance
 {

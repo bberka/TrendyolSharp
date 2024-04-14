@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using TrendyolSharp.Extensions;
 using TrendyolSharp.Models;
-using TrendyolSharp.Models.Filter;
-using TrendyolSharp.Models.Request;
-using TrendyolSharp.Models.Response;
+using TrendyolSharp.Models.Marketplace.Filter;
+using TrendyolSharp.Models.Marketplace.Request;
+using TrendyolSharp.Models.Marketplace.Response;
 using TrendyolSharp.Utils;
 
 namespace TrendyolSharp.Services.Marketplace
