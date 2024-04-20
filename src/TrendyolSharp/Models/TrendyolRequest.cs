@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using TrendyolSharp.Abstract;
 using TrendyolSharp.Extensions;
 
 namespace TrendyolSharp.Models
@@ -38,8 +37,8 @@ namespace TrendyolSharp.Models
       //These will only work for POST and PUT requests, in here we do not check it because it will throw anyway
       if (jsonData != null) request.Content = new StringContent(jsonData, Encoding.Default, "application/json");
       if (formContent != null) request.Content = new FormUrlEncodedContent(formContent);
-      
-      
+
+
       var response = await _httpClient.SendAsync(request);
       var content = await response.Content.ReadAsStringAsync();
       var statusCode = response.StatusCode;
@@ -56,23 +55,23 @@ namespace TrendyolSharp.Models
     }
 
     public async Task<TrendyolApiResult> SendGetRequestAsync(Dictionary<string, string> headers = null) {
-      return await SendRequestAsync(HttpMethod.Get, headers: headers);
+      return await SendRequestAsync(HttpMethod.Get, headers);
     }
 
     public async Task<TrendyolApiResult> SendPostRequestAsync(object data = null,
                                                               Dictionary<string, string> headers = null,
                                                               Dictionary<string, string> formContent = null) {
-      return await SendRequestAsync(HttpMethod.Post, headers: headers, jsonData: data.ToJsonString(), formContent: formContent);
+      return await SendRequestAsync(HttpMethod.Post, headers, jsonData: data.ToJsonString(), formContent: formContent);
     }
 
     public async Task<TrendyolApiResult> SendPutRequestAsync(object data = null,
                                                              Dictionary<string, string> headers = null,
                                                              Dictionary<string, string> formContent = null) {
-      return await SendRequestAsync(HttpMethod.Put, headers: headers, jsonData: data.ToJsonString(), formContent: formContent);
+      return await SendRequestAsync(HttpMethod.Put, headers, jsonData: data.ToJsonString(), formContent: formContent);
     }
 
     public async Task<TrendyolApiResult> SendDeleteRequestAsync(Dictionary<string, string> headers = null) {
-      return await SendRequestAsync(HttpMethod.Delete, headers: headers);
+      return await SendRequestAsync(HttpMethod.Delete, headers);
     }
   }
 }
