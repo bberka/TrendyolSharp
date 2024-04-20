@@ -2,7 +2,7 @@
 {
   public sealed class FilterPage
   {
-    public int Page { get; set; }
-    public int Size { get; set; }
+    public long Page { get; set; }
+    public long Size { get; set; }
   }
 }
