@@ -7,7 +7,7 @@
     public long? EndDate { get; set; }
     public long? StartDate { get; set; }
     public string OrderNumber { get; set; }
-    public int? Size { get; set; }
-    public int? Page { get; set; }
+    public long? Size { get; set; }
+    public long? Page { get; set; }
   }
 }
