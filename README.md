@@ -1,16 +1,13 @@
 # Introduction 
-TrendyolSharp is a simple Trendyol API Wrapper class library written in .NET Standard 2.1
+TrendyolClient.Sharp is a simple Trendyol API Client for C# with .NET 5+ version. 
 
-This project aims to wrap each Trendyol API endpoints to .NET class and methods using the power of type safety
+This project aims to wrap each Trendyol API endpoints to .NET class and methods using the C# and type safety.
 
-It can be used to develop integrations for Trendyol sellers
-
+It can be used to develop integration projects for Trendyol Sellers interacting with Trendyol API
 
 # Warnings
-1. This project still under development process, there could be potential bugs be careful when you use it
-2. Logging very minimal or not exists as well as error handling
-3. Project implementations still ongoing so the tests not done 
-4. Data validations are very minimal and Trendyol API will throw errors if you give invalid data
+1. This project still under development and not finished product, there could be potential bugs be careful when you use it
+2. API Requests are not validated and not all has been tested.
 
 # Implementations
 - [X] Trendyol Marketplace API 
@@ -19,12 +16,16 @@ It can be used to develop integrations for Trendyol sellers
   - [x] Common Label Integrations
   - [X] Refund Integrations
   - [X] Question&Answer Integrations
+  - [ ] Webhooks
 - [ ] Trendyol Meal API 
 - [ ] Trendyol Fast Market API
 
 # Todos
 1. Make sure each data type is valid for Trendyol API
-2. Review the Trendyol docs for specific cases
-3. Implement Stage API url swap
-4. Implement enums
-5. ...more
+2. Review the Trendyol docs before using any endpoint method
+3. Implement enums for request and response models
+4. Implement Meal API
+5. Implement Fast Market API
+6. Implement Webhooks
+7. Implement Unit Tests
+8. Implement validation of request models
