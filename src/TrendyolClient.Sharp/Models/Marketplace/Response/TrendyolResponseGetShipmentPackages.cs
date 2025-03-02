@@ -8,6 +8,6 @@ namespace TrendyolClient.Sharp.Models.Marketplace.Response
     public long Size { get; set; }
     public long TotalPages { get; set; }
     public long TotalElements { get; set; }
-    public List<ShipmentPackage> Content { get; set; }
+    public List<TrendyolShipmentPackage> Content { get; set; }
   }
 }

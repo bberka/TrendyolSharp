@@ -2,7 +2,7 @@
 
 namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class Category
+  public sealed class TrendyolSubCategory
   {
     public long Id { get; set; }
 
@@ -11,6 +11,6 @@ namespace TrendyolClient.Sharp.Models.Marketplace
 
     public long ParentId { get; set; }
 
-    public List<SubCategory> SubCategories { get; set; }
+    public List<TrendyolSubCategory> SubCategories { get; set; }
   }
 }

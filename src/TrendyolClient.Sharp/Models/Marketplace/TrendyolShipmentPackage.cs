@@ -2,9 +2,9 @@
 
 namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class ShipmentPackage
+  public sealed class TrendyolShipmentPackage
   {
-    public ShipmentAddress ShipmentAddress { get; set; }
+    public TrendyolShipmentAddress ShipmentAddress { get; set; }
     public string OrderNumber { get; set; }
     public decimal GrossAmount { get; set; }
     public decimal TotalDiscount { get; set; }

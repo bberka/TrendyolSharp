@@ -53,6 +53,6 @@ namespace TrendyolClient.Sharp.Models.Marketplace
 
     public List<object> Attributes { get; set; }
 
-    public List<VariantAttribute> VariantAttributes { get; set; }
+    public List<TrendyolVariantAttribute> VariantAttributes { get; set; }
   }
 }

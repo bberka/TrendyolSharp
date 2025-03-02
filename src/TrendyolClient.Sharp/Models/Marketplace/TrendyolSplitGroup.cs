@@ -2,7 +2,7 @@
 
 namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class SplitGroup
+  public sealed class TrendyolSplitGroup
   {
     public List<long> OrderLineIds { get; set; }
   }

@@ -15,7 +15,7 @@ namespace TrendyolClient.Sharp.Models.Marketplace
     public string CargoSenderNumber { get; set; }
     public string CargoProviderName { get; set; }
     public long OrderShipmentPackageId { get; set; }
-    public ReplacementInfo ReplacementOutboundpackageinfo { get; set; }
+    public TrendyolReplacementInfo ReplacementOutboundpackageinfo { get; set; }
     public RejectedInfo RejectedPackageInfo { get; set; }
     public List<ClaimItem> Items { get; set; }
   }

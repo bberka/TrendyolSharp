@@ -4,6 +4,6 @@ namespace TrendyolClient.Sharp.Models.Marketplace.Request
 {
   public sealed class RequestUpdatePriceAndInventory
   {
-    public List<ProductPriceAndInventoryInfo> Items { get; set; }
+    public List<TrendyolProductPriceAndInventoryInfo> Items { get; set; }
   }
 }

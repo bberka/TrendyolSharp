@@ -44,6 +44,7 @@ namespace TrendyolClient.Sharp.Models
       var reasonPhrase = response.ReasonPhrase;
       var responseHeaders = response.Headers.ToDictionary(x => x.Key, x => x.Value.First());
       var isSuccessStatusCode = response.IsSuccessStatusCode;
+      //TODO: Add form data to api result
       return new TrendyolApiResult(isSuccessStatusCode,
                                    (int)statusCode,
                                    reasonPhrase,

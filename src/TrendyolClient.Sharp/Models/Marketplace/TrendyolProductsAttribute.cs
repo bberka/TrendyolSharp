@@ -1,6 +1,6 @@
 ﻿namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class ProductsAttribute
+  public sealed class TrendyolProductsAttribute
   {
     public long AttributeId { get; set; }
     public string AttributeName { get; set; }

@@ -29,7 +29,7 @@ namespace TrendyolClient.Sharp.Models
       RequestJsonBody = requestJsonBody;
     }
 
-    public TrendyolApiResult<T> WithData<T>(T data) {
+    internal TrendyolApiResult<T> WithData<T>(T data) {
       return new TrendyolApiResult<T>(IsSuccessStatusCode,
                                       StatusCode,
                                       ReasonPhrase,
@@ -71,7 +71,7 @@ namespace TrendyolClient.Sharp.Models
       RequestJsonBody = requestJsonBody;
     }
 
-    public TrendyolApiResult ToApiResult() {
+    internal TrendyolApiResult ToApiResult() {
       return new TrendyolApiResult(IsSuccessStatusCode,
                                    StatusCode,
                                    ReasonPhrase,

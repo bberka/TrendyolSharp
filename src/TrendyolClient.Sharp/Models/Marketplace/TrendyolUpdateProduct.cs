@@ -2,7 +2,7 @@
 
 namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class UpdateProduct
+  public sealed class TrendyolUpdateProduct
   {
     public string Barcode { get; set; }
 

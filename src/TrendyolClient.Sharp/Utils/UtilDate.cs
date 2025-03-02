@@ -2,7 +2,7 @@
 
 namespace TrendyolClient.Sharp.Utils
 {
-  public static class UtilDate
+  internal static class UtilDate
   {
     public static long ToTimestampMiliseconds(this DateTime dateTime) {
       var unixEpoch = new DateTime(1970,

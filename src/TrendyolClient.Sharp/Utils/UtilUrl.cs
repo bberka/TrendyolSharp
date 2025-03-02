@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TrendyolClient.Sharp.Utils
 {
-  public static class UtilUrl
+  internal static class UtilUrl
   {
     public static string BuildUrl(this string url, Dictionary<string, object> queryParams) {
       var uriBuilder = new UriBuilder(url);

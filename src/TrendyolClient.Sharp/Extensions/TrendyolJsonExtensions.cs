@@ -2,9 +2,9 @@
 
 namespace TrendyolClient.Sharp.Extensions
 {
-  public static class JsonExtensions
+  internal static class TrendyolJsonExtensions
   {
-    private static JsonSerializerSettings _settings = new JsonSerializerSettings {
+    private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings {
       ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver {
         NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy()
       },
@@ -15,11 +15,11 @@ namespace TrendyolClient.Sharp.Extensions
     };
 
     public static string ObjectToJsonString(this object obj) {
-      return JsonConvert.SerializeObject(obj, _settings);
+      return JsonConvert.SerializeObject(obj, Settings);
     }
 
     public static T JsonToObject<T>(this string json) {
-      return JsonConvert.DeserializeObject<T>(json, _settings);
+      return JsonConvert.DeserializeObject<T>(json, Settings);
     }
   }
 }

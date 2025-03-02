@@ -1,6 +1,6 @@
 ﻿namespace TrendyolClient.Sharp.Models.Marketplace
 {
-  public sealed class SupplierAddress
+  public sealed class TrendyolSupplierAddress
   {
     public long Id { get; set; }
 
