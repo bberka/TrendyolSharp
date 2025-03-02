@@ -1,13 +1,11 @@
 # Introduction 
-TrendyolClient.Sharp is a simple Trendyol API Client for C# with .NET 5+ version. 
+TrendyolClient.Sharp is a simple Trendyol API Client for C# with .NET 6+ version. 
 
 This project aims to wrap each Trendyol API endpoints to .NET class and methods using the C# and type safety.
 
-It can be used to develop integration projects for Trendyol Sellers interacting with Trendyol API
+It can be used to create projects for Trendyol Sellers interacting with Trendyol API
 
-# Warnings
-1. This project still under development and not finished product, there could be potential bugs be careful when you use it
-2. API Requests are not validated and not all has been tested.
+Official document can be found [here](https://developers.trendyol.com/)
 
 # Implementations
 - [X] Trendyol Marketplace API 
@@ -29,3 +27,13 @@ It can be used to develop integration projects for Trendyol Sellers interacting 
 6. Implement Webhooks
 7. Implement Unit Tests
 8. Implement validation of request models
+
+
+
+# Disclaimer and Warnings
+
+- This project is NOT a finalized product. Use it at your own risk
+- This project may not be actively maintained. If you find issue submit a PR.
+- This is NOT an official Trendyol project.
+- API requests is NOT being validated by this package. 
+- API rate limits is NOT being handled by this package.
