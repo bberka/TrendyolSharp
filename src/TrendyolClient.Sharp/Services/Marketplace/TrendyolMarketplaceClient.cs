@@ -8,11 +8,6 @@ namespace TrendyolClient.Sharp.Services.Marketplace
   /// </summary>
   public partial class TrendyolMarketplaceClient
   {
-    public long SellerId { get; }
-    public bool UseStageApi { get; }
-    protected HttpClient HttpClient { get; }
-    protected ILogger Logger { get; }
-
     /// <summary>
     ///   Constructor for Trendyol Marketplace Client
     /// </summary>
@@ -29,5 +24,10 @@ namespace TrendyolClient.Sharp.Services.Marketplace
       UseStageApi = useStageApi;
       Logger = logger;
     }
+
+    public long SellerId { get; }
+    public bool UseStageApi { get; }
+    protected HttpClient HttpClient { get; }
+    protected ILogger Logger { get; }
   }
 }

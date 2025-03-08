@@ -76,7 +76,7 @@ namespace TrendyolClient.Sharp
     ///   <br />
     ///   It will send a GetProductsAsync request only asking for 1 item to verify the credentials
     ///   <br />
-    /// Check logs for details
+    ///   Check logs for details
     /// </summary>
     /// <returns></returns>
     public async Task<bool> VerifyCredentialsAsync() {

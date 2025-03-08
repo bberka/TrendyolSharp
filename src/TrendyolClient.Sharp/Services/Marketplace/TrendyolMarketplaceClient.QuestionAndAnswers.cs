@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Models;
 using TrendyolClient.Sharp.Models.Marketplace;
 using TrendyolClient.Sharp.Models.Marketplace.Filter;
 using TrendyolClient.Sharp.Models.Marketplace.Request;
 using TrendyolClient.Sharp.Models.Marketplace.Response;
-using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Utils;
 
 namespace TrendyolClient.Sharp.Services.Marketplace
@@ -42,7 +42,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
 
 
     /// <summary>
-    ///  https://developers.trendyol.com/docs/marketplace/soru-cevap-entegrasyonu/musteri-sorularini-cekme
+    ///   https://developers.trendyol.com/docs/marketplace/soru-cevap-entegrasyonu/musteri-sorularini-cekme
     /// </summary>
     public async Task<TrendyolApiResult<Question>> GetQuestionsByIdAsync(int id) {
       //TODO: CHECK IF RESPONSE IS Question or ResponseGetQuestions assumed it is Question at the moment

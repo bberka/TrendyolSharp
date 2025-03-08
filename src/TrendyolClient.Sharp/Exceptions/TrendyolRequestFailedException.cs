@@ -1,7 +1,7 @@
 ﻿using System;
 using TrendyolClient.Sharp.Abstract;
-using TrendyolClient.Sharp.Models;
 using TrendyolClient.Sharp.Extensions;
+using TrendyolClient.Sharp.Models;
 
 namespace TrendyolClient.Sharp.Exceptions
 {

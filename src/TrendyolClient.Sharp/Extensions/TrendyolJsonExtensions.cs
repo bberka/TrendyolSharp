@@ -1,16 +1,18 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace TrendyolClient.Sharp.Extensions
 {
   internal static class TrendyolJsonExtensions
   {
-    private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings {
-      ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver {
-        NamingStrategy = new Newtonsoft.Json.Serialization.CamelCaseNamingStrategy()
+    private static readonly JsonSerializerSettings Settings = new() {
+      ContractResolver = new DefaultContractResolver {
+        NamingStrategy = new CamelCaseNamingStrategy()
       },
       TypeNameHandling = TypeNameHandling.Auto,
       NullValueHandling = NullValueHandling.Ignore,
-      Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() },
+      Converters = { new StringEnumConverter() },
       Formatting = Formatting.Indented
     };
 

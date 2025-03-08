@@ -25,19 +25,19 @@
     ///   This will prevent your products from being published.
     /// </summary>
     public static readonly ShippingCompanies[] List = {
-      new ShippingCompanies(42, "DHLMP", "DHL Marketplace", "951-241-77-13"),
-      new ShippingCompanies(38, "SENDEOMP", "Sendeo Marketplace", "2910804196"),
-      new ShippingCompanies(35, "OCTOMP", "Octovan Lojistik Marketplace", "6330506845"),
-      new ShippingCompanies(30, "BORMP", "Borusan Lojistik Marketplace", "1800038254"),
-      new ShippingCompanies(14, "CAIMP", "Cainiao Marketplace", "0"),
-      new ShippingCompanies(10, "MNGMP", "MNG Kargo Marketplace", "6080712084"),
-      new ShippingCompanies(19, "PTTMP", "PTT Kargo Marketplace", "7320068060"),
-      new ShippingCompanies(9, "SURATMP", "Sürat Kargo Marketplace", "7870233582"),
-      new ShippingCompanies(17, "TEXMP", "Trendyol Express Marketplace", "8590921777"),
-      new ShippingCompanies(6, "HOROZMP", "Horoz Kargo Marketplace", "4630097122"),
-      new ShippingCompanies(20, "CEVAMP", "CEVA Marketplace", "8450298557"),
-      new ShippingCompanies(4, "YKMP", "Yurtiçi Kargo Marketplace", "3130557669"),
-      new ShippingCompanies(7, "ARASMP", "Aras Kargo Marketplace", "720039666")
+      new(42, "DHLMP", "DHL Marketplace", "951-241-77-13"),
+      new(38, "SENDEOMP", "Sendeo Marketplace", "2910804196"),
+      new(35, "OCTOMP", "Octovan Lojistik Marketplace", "6330506845"),
+      new(30, "BORMP", "Borusan Lojistik Marketplace", "1800038254"),
+      new(14, "CAIMP", "Cainiao Marketplace", "0"),
+      new(10, "MNGMP", "MNG Kargo Marketplace", "6080712084"),
+      new(19, "PTTMP", "PTT Kargo Marketplace", "7320068060"),
+      new(9, "SURATMP", "Sürat Kargo Marketplace", "7870233582"),
+      new(17, "TEXMP", "Trendyol Express Marketplace", "8590921777"),
+      new(6, "HOROZMP", "Horoz Kargo Marketplace", "4630097122"),
+      new(20, "CEVAMP", "CEVA Marketplace", "8450298557"),
+      new(4, "YKMP", "Yurtiçi Kargo Marketplace", "3130557669"),
+      new(7, "ARASMP", "Aras Kargo Marketplace", "720039666")
     };
 
     private ShippingCompanies(int id, string code, string name, string taxNumber) {

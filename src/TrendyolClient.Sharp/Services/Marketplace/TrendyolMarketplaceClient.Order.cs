@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Models;
 using TrendyolClient.Sharp.Models.Marketplace.Filter;
 using TrendyolClient.Sharp.Models.Marketplace.Request;
 using TrendyolClient.Sharp.Models.Marketplace.Response;
-using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Utils;
 
 namespace TrendyolClient.Sharp.Services.Marketplace
@@ -50,9 +50,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/kargo-takip-kodu-bildirme
     /// </summary>
     public async Task<TrendyolApiResult> UpdateTrackingNumberAsync(string shipmentPackageId, RequestUpdateTrackingNumber request) {
-      if (string.IsNullOrEmpty(shipmentPackageId)) {
-        throw new ArgumentNullException(nameof(shipmentPackageId));
-      }
+      if (string.IsNullOrEmpty(shipmentPackageId)) throw new ArgumentNullException(nameof(shipmentPackageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{shipmentPackageId}/update-tracking-number";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{shipmentPackageId}/update-tracking-number";
@@ -68,9 +66,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/paket-statu-bildirimi
     /// </summary>
     public async Task<TrendyolApiResult> UpdatePackageStatusAsync(string packageId, RequestUpdatePackageStatus request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}";
@@ -86,9 +82,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/tedarik-edememe-bildirimi
     /// </summary>
     public async Task<TrendyolApiResult> UpdatePackageUnsuppliedAsync(string packageId, RequestUpdatePackageUnsupplied request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/items/unsupplied";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/items/unsupplied";
@@ -136,9 +130,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     /// </summary>
     public async Task<TrendyolApiResult> SplitMultiPackageByQuantityAsync(string packageId,
                                                                           RequestSplitMultiPackageByQuantity request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/split-packages";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/split-packages";
@@ -154,9 +146,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
     /// </summary>
     public async Task<TrendyolApiResult> SplitShipmentPackageAsync(string packageId) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/split";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/split";
@@ -172,9 +162,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
     /// </summary>
     public async Task<TrendyolApiResult> MultiSplitShipmentPackageAsync(string packageId) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/multi-split";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/multi-split";
@@ -190,9 +178,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/siparis-paketlerini-bolme
     /// </summary>
     public async Task<TrendyolApiResult> SplitShipmentPackageByQuantityAsync(string packageId) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/quantity-split";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/quantity-split";
@@ -208,9 +194,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/desi-ve-koli-bilgisi-bildirimi
     /// </summary>
     public async Task<TrendyolApiResult> UpdateBoxInfoAsync(string packageId, RequestUpdateBoxInfo request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/box-info";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/box-info";
@@ -226,9 +210,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/alternatif-teslimat-ile-gonderim
     /// </summary>
     public async Task<TrendyolApiResult> ProcessAlternativeDeliveryAsync(string packageId, RequestProcessAlternativeDelivery request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/alternative-delivery";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/alternative-delivery";
@@ -244,9 +226,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://api.trendyol.com/sapigw/suppliers/{supplierId}/manual-deliver/{cargoTrackingNumber}
     /// </summary>
     public async Task<TrendyolApiResult> ManualDeliverAsync(string cargoTrackingNumber) {
-      if (string.IsNullOrEmpty(cargoTrackingNumber)) {
-        throw new ArgumentNullException(nameof(cargoTrackingNumber));
-      }
+      if (string.IsNullOrEmpty(cargoTrackingNumber)) throw new ArgumentNullException(nameof(cargoTrackingNumber));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/manual-deliver/{cargoTrackingNumber}";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/manual-deliver/{cargoTrackingNumber}";
@@ -262,9 +242,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/alternatif-teslimat-ile-gonderim
     /// </summary>
     public async Task<TrendyolApiResult> ManualReturnAsync(string cargoTrackingNumber) {
-      if (string.IsNullOrEmpty(cargoTrackingNumber)) {
-        throw new ArgumentNullException(nameof(cargoTrackingNumber));
-      }
+      if (string.IsNullOrEmpty(cargoTrackingNumber)) throw new ArgumentNullException(nameof(cargoTrackingNumber));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/manual-return/{cargoTrackingNumber}";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/manual-return/{cargoTrackingNumber}";
@@ -281,9 +259,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/yetkili-servis-gonderimi
     /// </summary>
     public async Task<TrendyolApiResult> DeliveredByServiceAsync(string packageId) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/delivered-by-service";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/delivered-by-service";
@@ -310,9 +286,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   "KOLAYGELSINMP"
     /// </summary>
     public async Task<TrendyolApiResult> ChangeCargoProviderAsync(string packageId, RequestChangeCargoProvider request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/cargo-providers";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/cargo-providers";
@@ -329,9 +303,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/depo-bilgisi-guncelleme
     /// </summary>
     public async Task<TrendyolApiResult> UpdateWarehouseAsync(string packageId, RequestUpdateWarehouse request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/warehouse";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/warehouse";
@@ -348,9 +320,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/ek-tedarik-s%C3%BCresi-tan%C4%B1mlama
     /// </summary>
     public async Task<TrendyolApiResult> AgreedDeliveryDateAsync(string packageId, RequestAgreedDeliveryDate request) {
-      if (string.IsNullOrEmpty(packageId)) {
-        throw new ArgumentNullException(nameof(packageId));
-      }
+      if (string.IsNullOrEmpty(packageId)) throw new ArgumentNullException(nameof(packageId));
 
       var prod = $"https://apigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/extended-agreed-delivery-date";
       var stage = $"https://stageapigw.trendyol.com/integration/order/sellers/{SellerId}/shipment-packages/{packageId}/extended-agreed-delivery-date";
@@ -367,8 +337,8 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetCountriesAsync() {
-      var prod = $"https://apigw.trendyol.com/integration/member/countries";
-      var stage = $"https://stageapigw.trendyol.com/integration/member/countries";
+      var prod = "https://apigw.trendyol.com/integration/member/countries";
+      var stage = "https://stageapigw.trendyol.com/integration/member/countries";
       var url = UseStageApi
                   ? stage
                   : prod;
@@ -381,9 +351,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetCitiesGULFAsync(string countryCode) {
-      if (string.IsNullOrEmpty(countryCode)) {
-        throw new ArgumentNullException(nameof(countryCode));
-      }
+      if (string.IsNullOrEmpty(countryCode)) throw new ArgumentNullException(nameof(countryCode));
 
       var prod = $"https://apigw.trendyol.com/integration/member/countries/{countryCode}/cities";
       var stage = $"https://stageapigw.trendyol.com/integration/member/countries/{countryCode}/cities";
@@ -399,8 +367,8 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetCitiesAzerbaijanAsync() {
-      var prod = $"https://apigw.trendyol.com/integration/member/countries/domestic/AZ/cities";
-      var stage = $"https://stageapigw.trendyol.com/integration/member/countries/domestic/AZ/cities";
+      var prod = "https://apigw.trendyol.com/integration/member/countries/domestic/AZ/cities";
+      var stage = "https://stageapigw.trendyol.com/integration/member/countries/domestic/AZ/cities";
       var url = UseStageApi
                   ? stage
                   : prod;
@@ -413,9 +381,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetDistrictsAzerbaijanAsync(string cityCode) {
-      if (string.IsNullOrEmpty(cityCode)) {
-        throw new ArgumentNullException(nameof(cityCode));
-      }
+      if (string.IsNullOrEmpty(cityCode)) throw new ArgumentNullException(nameof(cityCode));
 
       var prod = $"https://apigw.trendyol.com/integration/member/countries/domestic/AZ/cities/{cityCode}/districts";
       var stage = $"https://stageapigw.trendyol.com/integration/member/countries/domestic/AZ/cities/{cityCode}/districts";
@@ -432,8 +398,8 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetCitiesTurkeyAsync() {
-      var prod = $"https://apigw.trendyol.com/integration/member/countries/domestic/TR/cities";
-      var stage = $"https://stageapigw.trendyol.com/integration/member/countries/domestic/TR/cities";
+      var prod = "https://apigw.trendyol.com/integration/member/countries/domestic/TR/cities";
+      var stage = "https://stageapigw.trendyol.com/integration/member/countries/domestic/TR/cities";
       var url = UseStageApi
                   ? stage
                   : prod;
@@ -446,9 +412,7 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetDistrictsTurkeyAsync(string cityCode) {
-      if (string.IsNullOrEmpty(cityCode)) {
-        throw new ArgumentNullException(nameof(cityCode));
-      }
+      if (string.IsNullOrEmpty(cityCode)) throw new ArgumentNullException(nameof(cityCode));
 
       var prod = $"https://apigw.trendyol.com/integration/member/countries/domestic/TR/cities/{cityCode}/districts";
       var stage = $"https://stageapigw.trendyol.com/integration/member/countries/domestic/TR/cities/{cityCode}/districts";
@@ -464,13 +428,9 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/siparis-entegrasyonu/adres-bilgisi
     /// </summary>
     public async Task<TrendyolApiResult> GetNeighborhoodsTurkeyAsync(string cityCode, string districtCode) {
-      if (string.IsNullOrEmpty(cityCode)) {
-        throw new ArgumentNullException(nameof(cityCode));
-      }
+      if (string.IsNullOrEmpty(cityCode)) throw new ArgumentNullException(nameof(cityCode));
 
-      if (string.IsNullOrEmpty(districtCode)) {
-        throw new ArgumentNullException(nameof(districtCode));
-      }
+      if (string.IsNullOrEmpty(districtCode)) throw new ArgumentNullException(nameof(districtCode));
 
       var prod = $"https://apigw.trendyol.com/integration/member/countries/domestic/TR/cities/{cityCode}/districts/{districtCode}/neighborhoods";
       var stage = $"https://stageapigw.trendyol.com/integration/member/countries/domestic/TR/cities/{cityCode}/districts/{districtCode}/neighborhoods";

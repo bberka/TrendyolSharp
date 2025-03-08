@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Models;
 using TrendyolClient.Sharp.Models.Marketplace.Request;
 using TrendyolClient.Sharp.Models.Marketplace.Response;
-using TrendyolClient.Sharp.Extensions;
 using TrendyolClient.Sharp.Utils;
 
 namespace TrendyolClient.Sharp.Services.Marketplace
@@ -75,8 +75,8 @@ namespace TrendyolClient.Sharp.Services.Marketplace
     ///   https://developers.trendyol.com/docs/marketplace/iade-entegrasyonu/iade-red-sebeplerini-cekme
     /// </summary>
     public async Task<TrendyolApiResult<ResponseGetClaimsIssueReasons>> GetClaimsIssueReasonsAsync() {
-      var prod = $"https://apigw.trendyol.com/integration/order/claim-issue-reasons";
-      var stage = $"https://stageapigw.trendyol.com/integration/order/claim-issue-reasons";
+      var prod = "https://apigw.trendyol.com/integration/order/claim-issue-reasons";
+      var stage = "https://stageapigw.trendyol.com/integration/order/claim-issue-reasons";
       var url = UseStageApi
                   ? stage
                   : prod;

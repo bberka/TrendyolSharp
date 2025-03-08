@@ -11,14 +11,14 @@ namespace TrendyolClient.Sharp.Models
   {
     private readonly Dictionary<string, string> _headers;
 
-    public HttpClient Client { get; }
-    public string Url { get; }
-
     public TrendyolRequest(HttpClient httpClient, string url, Dictionary<string, string> headers = null) {
       Client = httpClient;
       Url = url;
       _headers = headers;
     }
+
+    public HttpClient Client { get; }
+    public string Url { get; }
 
 
     private async Task<TrendyolApiResult> SendRequestAsync(HttpMethod method,
